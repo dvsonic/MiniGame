@@ -1,0 +1,95 @@
+syntax="proto3";
+package Message;
+
+message AI
+{
+    enum Proto {
+        Proto_NONE = 0;
+
+        C2SChatAskReq = 1;
+        S2CChatAnswerRes = 2;
+        S2CChatAskNotify = 3;
+        S2CChatAnswerNotify = 4;
+        C2SChatHeartBeatReq = 5;
+        S2CChatHeartBeatRes = 6;
+        C2SChatLoginReq = 7;
+        S2CChatLoginRes = 8;
+        C2SChangeCharacterReq = 9;
+        S2CChangeCharacterRes = 10;
+    }
+}
+enum ChatType{
+    TEXT = 0;
+    VOICE = 1;
+}
+message C2SChatAskReq
+{
+    ChatType type = 1;
+    oneof content {
+        string strValue = 2;
+        bytes sndValue = 3;
+      }
+}
+
+message S2CChatAnswerRes
+{
+    int32 ret = 1;
+    string strValue = 2;
+    bytes sndValue = 3;
+    int32 sentiValue = 4;
+}
+
+message S2CChatAskNotify
+{
+    ChatType type = 1;
+    oneof content {
+        string strValue = 2;
+        bytes sndValue = 3;
+      }
+}
+
+message S2CChatAnswerNotify
+{
+    string strValue = 1;
+    bytes sndValue = 2;
+    int32 sentiValue = 3;
+}
+
+message C2SChatHeartBeatReq
+{
+
+}
+
+message S2CChatHeartBeatRes
+{
+
+}
+
+message CharacterInfo
+{
+    string char_name = 1;
+    int32 char_affinity = 2;
+}
+
+message UserProfile
+{
+    repeated CharacterInfo allCharacter = 1;
+}
+
+message C2SChatLoginReq
+{
+    string nickName = 1;
+}
+message S2CChatLoginRes
+{
+    int32 ret = 1;
+    UserProfile profile = 2; 
+}
+message C2SChangeCharacterReq
+{
+    string char_name = 1;
+}
+message S2CChangeCharacterRes
+{
+    int32 ret = 1;
+}

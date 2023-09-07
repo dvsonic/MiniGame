@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package Message;
+
+message NetMessage {
+    enum ProtocolVersion {
+        NONE = 0;
+        VERSION = 21121601;     // 当前协议版本号
+        MINVERSION = 21121001;     // 最小允许协议版本号
+    }
+
+    message EProtocol {
+        enum Proto {
+            Proto_NONE = 0;
+            AI     = 1;
+        }
+    }
+
+    enum ErrorCode{
+        OK = 0;
+        REQ_PARAM_INVALID = 1;
+    }
+}
+
+message Vector3Int
+{
+    int32 x = 1;
+    int32 y = 2;
+    int32 z = 3;
+}
+
+
