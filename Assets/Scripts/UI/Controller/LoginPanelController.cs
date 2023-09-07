@@ -44,7 +44,7 @@ public class LoginPanelController : UIBaseController
 		ip = "10.21.25.115";
 #endif
 		SocketClient.Instance.ConnectToServer(ip, 38438);
-		if(SocketClient.Instance.Connected)
+		if(SocketClient.Instance.Connected && m_View.InputName.text != "")
         {
 			C2SChatLoginReq req = new C2SChatLoginReq();
 			req.NickName = m_View.InputName.text;
