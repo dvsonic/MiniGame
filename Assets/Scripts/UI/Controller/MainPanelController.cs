@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using Message;
 using Google.Protobuf;
+using TMPro;
 
 [UnityEngine.AddComponentMenu("")]
 public class MainPanelController : UIBaseController
@@ -21,8 +22,57 @@ public class MainPanelController : UIBaseController
 		m_View.BtnBack.onClick.AddListener(OnBack);
 		m_View.BtnSend.onClick.AddListener(OnSend);
         m_Audio = gameObject.AddComponent<AudioSource>();
+        m_View.ShortCut.SetActive(false);
+        m_View.ShortCut1.onClick.AddListener(OnShortCut1);
+        m_View.ShortCut2.onClick.AddListener(OnShortCut2);
+        m_View.ShortCut3.onClick.AddListener(OnShortCut3);
 
         SocketClient.Instance.RegisterCallback(E_NET_MSG_ID.S2CChatAnswerRes, OnAskRsp);
+
+        EventSys.ListenEvent("EVENT_AFFINITY_CHANGE", OnAffinityChange);
+        EventSys.ListenEvent("EVENT_AFFINITY_EVENT", OnAffinityEvent);
+    }
+
+    private void OnShortCut1()
+    {
+        this.Ask(m_View.ShortCut1.GetComponentInChildren<TextMeshProUGUI>().text);
+        m_View.ShortCut.SetActive(false);
+    }
+    private void OnShortCut2()
+    {
+        this.Ask(m_View.ShortCut2.GetComponentInChildren<TextMeshProUGUI>().text);
+        m_View.ShortCut.SetActive(false);
+    }
+    private void OnShortCut3()
+    {
+        this.Ask(m_View.ShortCut3.GetComponentInChildren<TextMeshProUGUI>().text);
+        m_View.ShortCut.SetActive(false);
+    }
+
+    private void OnAffinityChange(object[] args)
+    {
+        var affinity = CharacterModel.Instance.GetAffinity(curChar);
+        m_View.TFAffinity.text = affinity.Item1 + "/" + affinity.Item2;
+    }
+    private void OnAffinityEvent(object[] args)
+    {
+        AffinityCfg cfg = args[0] as AffinityCfg;
+        if(cfg != null)
+        {
+            m_View.ShortCut.SetActive(true);
+            string[] options = cfg.GetOptionAry();
+            m_View.ShortCut1.gameObject.SetActive(options.Length>0);
+            m_View.ShortCut2.gameObject.SetActive(options.Length > 1);
+            m_View.ShortCut3.gameObject.SetActive(options.Length > 2);
+
+            if(options.Length>0)
+                m_View.ShortCut1.GetComponentInChildren<TextMeshProUGUI>().text = options[0];
+            if (options.Length > 1)
+                m_View.ShortCut2.GetComponentInChildren<TextMeshProUGUI>().text = options[1];
+            if (options.Length > 2)
+                m_View.ShortCut3.GetComponentInChildren<TextMeshProUGUI>().text = options[2];
+
+        }
     }
 
     bool answered = true;
@@ -30,17 +80,21 @@ public class MainPanelController : UIBaseController
     {
         if(answered && m_View.Input.text != "")
         {
-            C2SChatAskReq req = new C2SChatAskReq();
-            req.Type = ChatType.Text;
-            req.StrValue = m_View.Input.text;
-            SocketClient.Instance.SendCmd(E_NET_MSG_ID.C2SChatAskReq, req);
-            Debug.Log("Send:" + req.StrValue);
-            this.answered = false;
-            m_View.TFAsk.text = req.StrValue;
-            m_View.AskContent.SetActive(true);
+            Ask(m_View.Input.text);
             m_View.Input.text = "";
-            m_View.AnswerContent.SetActive(false);
         }
+    }
+    void Ask(string content)
+    {
+        C2SChatAskReq req = new C2SChatAskReq();
+        req.Type = ChatType.Text;
+        req.StrValue = content;
+        SocketClient.Instance.SendCmd(E_NET_MSG_ID.C2SChatAskReq, req);
+        Debug.Log("Send:" + req.StrValue);
+        this.answered = false;
+        m_View.TFAsk.text = req.StrValue;
+        m_View.AskContent.SetActive(true);
+        m_View.AnswerContent.SetActive(false);
     }
 
     private void Update()
@@ -57,6 +111,7 @@ public class MainPanelController : UIBaseController
             m_View.AnswerContent.SetActive(true);
             m_View.TFAnswer.text = res.StrValue;
             this.PlaySnd(res.SndValue);
+            CharacterModel.Instance.UpdateAffinityBySenti(curChar, res.SentiValue);
             this.answered = true;
         }
     }
@@ -67,17 +122,19 @@ public class MainPanelController : UIBaseController
 		UIManager.Instance.OpenPanel<CharacterSelectController>();
     }
 
+    string curChar;
     public override void OnOpen(params object[] param)
     {
         base.OnOpen(param);
-		string charName = param[0] as string;
-		CharacterCfg cfg = TableManager.Instance.GetCharacterByID(charName);
+        curChar = param[0] as string;
+		CharacterCfg cfg = TableManager.Instance.GetCharacterByID(curChar);
 		if(cfg != null)
         {
 			m_View.TFCharacter.text = cfg.NickName;
         }
 		m_View.AskContent.SetActive(false);
 		m_View.AnswerContent.SetActive(false);
+        OnAffinityChange(null);
     }
 
     void PlaySnd(ByteString sndValue)
@@ -97,7 +154,12 @@ public class MainPanelController : UIBaseController
 
     protected override void OnUIDestory()
 	{
-		base.OnUIDestory();
+        m_View.ShortCut1.onClick.RemoveListener(OnShortCut1);
+        m_View.ShortCut2.onClick.RemoveListener(OnShortCut2);
+        m_View.ShortCut3.onClick.RemoveListener(OnShortCut3);
+        EventSys.UnListenEvent("EVENT_AFFINITY_CHANGE", OnAffinityChange);
+        EventSys.UnListenEvent("EVENT_AFFINITY_EVENT", OnAffinityEvent);
+        base.OnUIDestory();
         SocketClient.Instance.UnRegisterCallback(E_NET_MSG_ID.S2CChatAnswerRes, OnAskRsp);
     }
 }

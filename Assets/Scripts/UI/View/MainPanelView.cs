@@ -14,11 +14,12 @@ using TMPro;
 		public GameObject AnswerContent;
 		public TextMeshProUGUI TFAnswer;
 		public GameObject ShortCut;
-		public GameObject ShortCut1;
-		public GameObject ShortCut2;
-		public GameObject ShortCut3;
+		public Button ShortCut1;
+		public Button ShortCut2;
+		public Button ShortCut3;
 		public Button BtnMemory;
 		public TextMeshProUGUI TFMemory;
+		public TextMeshProUGUI TFAffinity;
 		protected override void OnInit(Transform holder)
 		{
 			var itemRef = holder.GetComponent<UIItemReference>();
@@ -34,10 +35,11 @@ using TMPro;
 			AnswerContent = itemVarList[6].Target.gameObject;
 			TFAnswer = itemVarList[7].Target.GetComponent<TextMeshProUGUI>();
 			ShortCut = itemVarList[8].Target.gameObject;
-			ShortCut1 = itemVarList[9].Target.gameObject;
-			ShortCut2 = itemVarList[10].Target.gameObject;
-			ShortCut3 = itemVarList[11].Target.gameObject;
+			ShortCut1 = itemVarList[9].Target.GetComponent<Button>();
+			ShortCut2 = itemVarList[10].Target.GetComponent<Button>();
+			ShortCut3 = itemVarList[11].Target.GetComponent<Button>();
 			BtnMemory = itemVarList[12].Target.GetComponent<Button>();
 			TFMemory = itemVarList[13].Target.GetComponent<TextMeshProUGUI>();
+			TFAffinity = itemVarList[14].Target.GetComponent<TextMeshProUGUI>();
 		}
 	}

@@ -4,6 +4,7 @@ using System;
 using System.Reflection;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using DG.Tweening;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -48,6 +49,22 @@ public class UIManager : Singleton<UIManager>
     private void OnPrefabCreated(AsyncOperationHandle obj)
     {
 
+    }
+
+    public void ShowFloatingText(string content)
+    {
+        ResourceManager.Instance.LoadAndInstantiateAsync<GameObject>("Assets/Prefabs/FloatingText.prefab", (obj) =>
+        {
+            obj.transform.SetParent(UIRoot);
+            obj.transform.localPosition = Vector3.zero;
+            obj.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = content;
+            obj.GetComponent<RectTransform>().DOAnchorPosY(200, 1).OnComplete(()=>OnFloatingComplete(obj));
+        });
+    }
+
+    void OnFloatingComplete(GameObject obj)
+    {
+        ResourceManager.Instance.DestroyInstance(obj);
     }
 }
 

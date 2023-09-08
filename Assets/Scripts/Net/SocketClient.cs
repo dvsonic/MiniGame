@@ -69,6 +69,7 @@ public class SocketClient:Singleton<SocketClient>
         catch (Exception e)
         {
             Debug.LogError("Failed to connect to server: " + e.Message);
+            UIManager.Instance.ShowFloatingText("Failed to connect to server");
         }
     }
 

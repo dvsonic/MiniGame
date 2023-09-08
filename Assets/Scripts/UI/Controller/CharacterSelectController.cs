@@ -43,7 +43,9 @@ public class CharacterSelectController : UIBaseController
 			m_View.TFProfile2.text = charCfg.Profile2;
 			m_View.TFProfile3.text = charCfg.Profile3;
 			m_View.TFProfile4.text = charCfg.Profile4;
-		}
+            var affinity = CharacterModel.Instance.GetAffinity(curChar);
+            m_View.TFFitness.text = affinity.Item1 + "/" + affinity.Item2;
+        }
 
     }
 

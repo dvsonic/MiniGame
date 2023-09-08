@@ -46,3 +46,18 @@ public class CharacterCfg:TableBase
     public string Profile3;
     public string Profile4;
 }
+
+public class AffinityCfg:TableBase
+{
+    public string ID;
+    public int Level;
+    public int Affinity;
+    public string Scene;
+    public string Photo;
+    public string Option;
+
+    public string[] GetOptionAry()
+    {
+        return Option.Split(";");
+    }
+}

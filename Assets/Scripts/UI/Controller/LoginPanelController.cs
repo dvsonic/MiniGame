@@ -31,6 +31,7 @@ public class LoginPanelController : UIBaseController
 		S2CChatLoginRes res = packet.PB as S2CChatLoginRes;
         if (res != null)
         {
+			CharacterModel.Instance.InitAffinity(res.Profile);
 			PlayerPrefs.SetString("LastLogin", m_View.InputName.text);
             UIManager.Instance.ClosePanel(this);
             UIManager.Instance.OpenPanel<CharacterSelectController>(res.Profile);
@@ -44,11 +45,16 @@ public class LoginPanelController : UIBaseController
 		ip = "10.21.25.115";
 #endif
 		SocketClient.Instance.ConnectToServer(ip, 38438);
-		if(SocketClient.Instance.Connected && m_View.InputName.text != "")
+		if(SocketClient.Instance.Connected)
         {
-			C2SChatLoginReq req = new C2SChatLoginReq();
-			req.NickName = m_View.InputName.text;
-			SocketClient.Instance.SendCmd(E_NET_MSG_ID.C2SChatLoginReq, req);
+			if (m_View.InputName.text != "")
+			{
+				C2SChatLoginReq req = new C2SChatLoginReq();
+				req.NickName = m_View.InputName.text;
+				SocketClient.Instance.SendCmd(E_NET_MSG_ID.C2SChatLoginReq, req);
+			}
+			else
+				UIManager.Instance.ShowFloatingText("请输入用户名!");
         }
     }
 

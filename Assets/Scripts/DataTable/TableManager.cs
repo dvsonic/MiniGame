@@ -8,6 +8,7 @@ public class TableManager : Singleton<TableManager>
     {
         Global,
         Character,
+        Affinity,
     }
     private Dictionary<TableEnum, List<TableBase>> allDic = new Dictionary<TableEnum, List<TableBase>>();
     public void Init()
@@ -18,6 +19,14 @@ public class TableManager : Singleton<TableManager>
             if (asset != null && !string.IsNullOrEmpty(asset.text))
             {
                 OnTableLoaded(TableEnum.Character, typeof(CharacterCfg), asset.text);
+            }
+        });
+        ResourceManager.Instance.LoadAsync<TextAsset>("Assets/Config/Affinity.csv", (obj) =>
+        {
+            TextAsset asset = obj as TextAsset;
+            if (asset != null && !string.IsNullOrEmpty(asset.text))
+            {
+                OnTableLoaded(TableEnum.Affinity, typeof(AffinityCfg), asset.text);
             }
         });
     }
@@ -57,6 +66,21 @@ public class TableManager : Singleton<TableManager>
             {
                 if ((lst[i] as CharacterCfg).ID == id)
                     return lst[i] as CharacterCfg;
+            }
+        }
+        return null;
+    }
+
+    public AffinityCfg GetAffinity(string id,int curAffinity)
+    {
+        List<TableBase> lst = GetTable(TableEnum.Affinity);
+        if(lst != null)
+        {
+            for(int i=1;i<lst.Count;i++)
+            {
+                var cfg = lst[i] as AffinityCfg;
+                if (cfg.ID == id && cfg.Affinity >= curAffinity)
+                    return cfg;
             }
         }
         return null;
