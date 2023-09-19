@@ -18,6 +18,7 @@ using TMPro;
 		public RectTransform Content;
 		public GameObject CharacterItem;
 		public TextMeshProUGUI TFDesc;
+		public Image BG;
 		protected override void OnInit(Transform holder)
 		{
 			var itemRef = holder.GetComponent<UIItemReference>();
@@ -37,5 +38,6 @@ using TMPro;
 			Content = itemVarList[10].Target.GetComponent<RectTransform>();
 			CharacterItem = itemVarList[11].Target.gameObject;
 			TFDesc = itemVarList[12].Target.GetComponent<TextMeshProUGUI>();
+			BG = itemVarList[13].Target.GetComponent<Image>();
 		}
 	}

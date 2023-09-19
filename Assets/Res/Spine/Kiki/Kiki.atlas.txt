@@ -1,0 +1,181 @@
+
+Kiki.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Weye_L
+  rotate: false
+  xy: 48, 937
+  size: 43, 35
+  orig: 43, 36
+  offset: 0, 0
+  index: -1
+Weye_R
+  rotate: false
+  xy: 1, 936
+  size: 46, 36
+  orig: 46, 37
+  offset: 0, 0
+  index: -1
+arm_L
+  rotate: 270
+  xy: 548, 191
+  size: 178, 385
+  orig: 179, 385
+  offset: 1, 0
+  index: -1
+arm_R
+  rotate: 270
+  xy: 321, 90
+  size: 167, 360
+  orig: 179, 368
+  offset: 11, 8
+  index: -1
+body_up
+  rotate: 270
+  xy: 507, 367
+  size: 194, 272
+  orig: 198, 272
+  offset: 4, 0
+  index: -1
+eye01_L
+  rotate: false
+  xy: 382, 943
+  size: 27, 28
+  orig: 27, 31
+  offset: 0, 1
+  index: -1
+eye01_R
+  rotate: false
+  xy: 410, 941
+  size: 25, 30
+  orig: 26, 30
+  offset: 1, 0
+  index: -1
+eye02_L
+  rotate: false
+  xy: 86, 958
+  size: 48, 13
+  orig: 48, 18
+  offset: 0, 0
+  index: -1
+eye02_R
+  rotate: false
+  xy: 322, 959
+  size: 48, 13
+  orig: 48, 14
+  offset: 0, 0
+  index: -1
+eyebrow_L
+  rotate: false
+  xy: 620, 956
+  size: 49, 15
+  orig: 49, 16
+  offset: 0, 1
+  index: -1
+eyebrow_R
+  rotate: false
+  xy: 701, 960
+  size: 46, 11
+  orig: 47, 13
+  offset: 0, 1
+  index: -1
+eyelash01_L
+  rotate: false
+  xy: 658, 944
+  size: 54, 27
+  orig: 54, 27
+  offset: 0, 0
+  index: -1
+eyelash01_R
+  rotate: false
+  xy: 604, 941
+  size: 54, 30
+  orig: 54, 30
+  offset: 0, 0
+  index: -1
+eyelid_L
+  rotate: false
+  xy: 158, 965
+  size: 22, 6
+  orig: 22, 6
+  offset: 0, 0
+  index: -1
+eyelid_R
+  rotate: false
+  xy: 135, 963
+  size: 21, 8
+  orig: 21, 8
+  offset: 0, 0
+  index: -1
+face
+  rotate: true
+  xy: 323, 236
+  size: 167, 232
+  orig: 168, 232
+  offset: 0, 0
+  index: -1
+hair01
+  rotate: 270
+  xy: 1, 91
+  size: 184, 377
+  orig: 192, 390
+  offset: 4, 13
+  index: -1
+hair02
+  rotate: true
+  xy: 430, 921
+  size: 51, 119
+  orig: 51, 121
+  offset: 0, 1
+  index: -1
+hair_long
+  rotate: false
+  xy: 1, 350
+  size: 527, 621
+  orig: 539, 625
+  offset: 0, 4
+  index: -1
+leg_L
+  rotate: false
+  xy: 778, 369
+  size: 110, 602
+  orig: 110, 602
+  offset: 0, 0
+  index: -1
+leg_R
+  rotate: 180
+  xy: 868, 370
+  size: 102, 601
+  orig: 102, 631
+  offset: 0, 0
+  index: -1
+mouth01
+  rotate: false
+  xy: 296, 965
+  size: 21, 5
+  orig: 21, 5
+  offset: 0, 0
+  index: -1
+mouth02
+  rotate: false
+  xy: 437, 956
+  size: 28, 16
+  orig: 28, 17
+  offset: 0, 0
+  index: -1
+skirt01
+  rotate: 270
+  xy: 522, 540
+  size: 430, 287
+  orig: 430, 289
+  offset: 0, 2
+  index: -1
+skirt02
+  rotate: 270
+  xy: 1, 292
+  size: 378, 105
+  orig: 378, 105
+  offset: 0, 0
+  index: -1

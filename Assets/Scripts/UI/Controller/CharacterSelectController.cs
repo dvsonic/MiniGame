@@ -34,6 +34,7 @@ public class CharacterSelectController : UIBaseController
     private void OnCharacterSelect(object[] args)
     {
 		curChar = args[0] as string;
+		m_View.BG.sprite = ResourceManager.Instance.Load<Sprite>("Assets/Res/Image/Background/" + curChar + ".png");
 		var charCfg = TableManager.Instance.GetCharacterByID(curChar);
 		if (charCfg != null)
 		{
@@ -58,6 +59,7 @@ public class CharacterSelectController : UIBaseController
         {
 			var obj = GameObject.Instantiate<GameObject>(m_View.CharacterItem);
 			obj.transform.SetParent(m_View.Content);
+			obj.transform.localScale = Vector3.one;
 			var charInfo = allChar[i] as CharacterCfg;
 			var item = obj.AddComponent<CharacterItem>();
 			item.SetValue(charInfo);

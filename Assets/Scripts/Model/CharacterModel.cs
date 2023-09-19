@@ -28,8 +28,9 @@ public class CharacterModel:Singleton<CharacterModel>
 
     public void UpdateAffinityBySenti(string id,int senti)
     {
+        int changeValue = TableManager.Instance.GetAffinityValueBySenti(senti);
         var affinity = GetAffinity(id);
-        var curValue = Math.Max(0, Math.Min(affinity.Item2, affinity.Item1 + senti));
+        var curValue = Math.Max(0, Math.Min(affinity.Item2, affinity.Item1 + changeValue));
         CharAffinity[id] = curValue;
         EventSys.FireEvent("EVENT_AFFINITY_CHANGE");
 

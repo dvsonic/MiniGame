@@ -3,6 +3,7 @@ using UnityEngine;
 using Message;
 using Google.Protobuf;
 using TMPro;
+using System.Collections.Generic;
 
 [UnityEngine.AddComponentMenu("")]
 public class MainPanelController : UIBaseController
@@ -21,6 +22,7 @@ public class MainPanelController : UIBaseController
 		m_View = CreateView(typeof(MainPanelView)) as MainPanelView;
 		m_View.BtnBack.onClick.AddListener(OnBack);
 		m_View.BtnSend.onClick.AddListener(OnSend);
+        m_View.BtnPhoto.onClick.AddListener(OnPhoto);
         m_Audio = gameObject.AddComponent<AudioSource>();
         m_View.ShortCut.SetActive(false);
         m_View.ShortCut1.onClick.AddListener(OnShortCut1);
@@ -31,6 +33,11 @@ public class MainPanelController : UIBaseController
 
         EventSys.ListenEvent("EVENT_AFFINITY_CHANGE", OnAffinityChange);
         EventSys.ListenEvent("EVENT_AFFINITY_EVENT", OnAffinityEvent);
+    }
+
+    private void OnPhoto()
+    {
+        UIManager.Instance.OpenPanel<PhotoPanelController>(this.curChar);
     }
 
     private void OnShortCut1()
@@ -53,7 +60,26 @@ public class MainPanelController : UIBaseController
     {
         var affinity = CharacterModel.Instance.GetAffinity(curChar);
         m_View.TFAffinity.text = affinity.Item1 + "/" + affinity.Item2;
+        var cfg = TableManager.Instance.GetAffinity(curChar, affinity.Item1);
+        if (cfg != null)
+            ResourceManager.Instance.LoadSprite2Image(m_View.BG,"Assets/Res/Image/Scene/" + cfg.Scene + ".png");
+
+        int totalCnt = 0;
+        int unlockCnt = 0;
+        List<TableBase> lst = TableManager.Instance.GetTable(TableManager.TableEnum.Affinity);
+        for (int i = 0; i < lst.Count; i++)
+        {
+            cfg = lst[i] as AffinityCfg;
+            if (cfg.ID == curChar)
+            {
+                totalCnt++;
+                if (affinity.Item1 >= cfg.Affinity)
+                    unlockCnt++;
+            }
+        }
+        m_View.TFPhoto.text = unlockCnt + "/" + totalCnt;
     }
+
     private void OnAffinityEvent(object[] args)
     {
         AffinityCfg cfg = args[0] as AffinityCfg;
@@ -112,6 +138,7 @@ public class MainPanelController : UIBaseController
             m_View.TFAnswer.text = res.StrValue;
             this.PlaySnd(res.SndValue);
             CharacterModel.Instance.UpdateAffinityBySenti(curChar, res.SentiValue);
+            m_View.Avatar.PlayBySenti(res.SentiValue);
             this.answered = true;
         }
     }

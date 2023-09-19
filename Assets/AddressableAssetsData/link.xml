@@ -1,8 +1,14 @@
 <linker>
   <assembly fullname="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="Spine4UI" preserve="all" />
     <type fullname="UIItemReference" preserve="all" />
     <type fullname="UnityEngine.UI.Empty4Raycast" preserve="all" />
     <type fullname="UIItemVariable" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="spine-unity, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="Spine.Unity.SkeletonDataAsset" preserve="all" />
+    <type fullname="Spine.Unity.SpineAtlasAsset" preserve="all" />
+    <type fullname="Spine.Unity.BlendModeMaterials" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
     <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
@@ -52,6 +58,7 @@
   <assembly fullname="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.UI.Button" preserve="all" />
     <type fullname="UnityEngine.UI.ContentSizeFitter" preserve="all" />
+    <type fullname="UnityEngine.UI.GridLayoutGroup" preserve="all" />
     <type fullname="UnityEngine.UI.HorizontalLayoutGroup" preserve="all" />
     <type fullname="UnityEngine.UI.Image" preserve="all" />
     <type fullname="UnityEngine.UI.LayoutElement" preserve="all" />

@@ -1,13 +1,37 @@
 using UnityEngine.AddressableAssets;
 using UnityEngine;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class ResourceManager : Singleton<ResourceManager>
 {
-    public GameObject Load<GameObject>(string resPath)
+    public void LoadSprite2Image(Image img,string resPath)
     {
-        var handler = Addressables.LoadAssetAsync<GameObject>(resPath);
-        return handler.WaitForCompletion();
+        if (assetsCache.ContainsKey(resPath))
+            img.sprite = assetsCache[resPath] as Sprite;
+        else
+        {
+            Addressables.LoadAssetAsync<Sprite>(resPath).Completed += h =>
+            {
+                if (h.Status == AsyncOperationStatus.Succeeded)
+                {
+                    assetsCache[resPath] = h.Result;
+                    img.sprite = h.Result;
+                }
+
+            };
+        }
+    }
+    Dictionary<string, object> assetsCache = new Dictionary<string, object>();
+    public TObject Load<TObject>(string resPath)
+    {
+        if (assetsCache.ContainsKey(resPath))
+            return (TObject)assetsCache[resPath];
+        var handler = Addressables.LoadAssetAsync<TObject>(resPath);
+        var obj = handler.WaitForCompletion();
+        assetsCache[resPath] = obj;
+        return obj;
     }
 
     public GameObject LoadAndInstantiate(string resPath, Vector3 pos, Quaternion rot)
@@ -21,10 +45,16 @@ public class ResourceManager : Singleton<ResourceManager>
 
     public void LoadAsync<TObject>(string resPath, LoadBytesCallBack callback)
     {
+        if(assetsCache.ContainsKey(resPath))
+        {
+            if (callback != null)
+                callback(assetsCache[resPath]);
+        }
         Addressables.LoadAssetAsync<TObject>(resPath).Completed += h =>
          {
              if(h.Status == AsyncOperationStatus.Succeeded)
              {
+                 assetsCache[resPath] = h.Result;
                  if(callback != null)
                  {
                      callback(h.Result);

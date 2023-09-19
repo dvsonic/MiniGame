@@ -9,6 +9,7 @@ public class TableManager : Singleton<TableManager>
         Global,
         Character,
         Affinity,
+        Sentiment,
     }
     private Dictionary<TableEnum, List<TableBase>> allDic = new Dictionary<TableEnum, List<TableBase>>();
     public void Init()
@@ -29,6 +30,14 @@ public class TableManager : Singleton<TableManager>
                 OnTableLoaded(TableEnum.Affinity, typeof(AffinityCfg), asset.text);
             }
         });
+        ResourceManager.Instance.LoadAsync<TextAsset>("Assets/Config/Sentiment.csv", (obj) =>
+        {
+            TextAsset asset = obj as TextAsset;
+            if (asset != null && !string.IsNullOrEmpty(asset.text))
+            {
+                OnTableLoaded(TableEnum.Sentiment, typeof(SentimentCfg), asset.text);
+            }
+        });
     }
 
     void OnTableLoaded(TableEnum key, Type t, string content)
@@ -37,7 +46,7 @@ public class TableManager : Singleton<TableManager>
             return;
         allDic[key] = new List<TableBase>();
         string[] lines = content.Split("\r\n");
-        string[] title = lines[0].Split("\t");
+        string[] title = lines[0].Split(",");
         for (int i = 1; i < lines.Length; i++)
         {
             var item = System.Activator.CreateInstance(t);
@@ -84,5 +93,20 @@ public class TableManager : Singleton<TableManager>
             }
         }
         return null;
+    }
+
+    public int GetAffinityValueBySenti(int sentiment)
+    {
+        List<TableBase> lst = GetTable(TableEnum.Sentiment);
+        if (lst != null)
+        {
+            for (int i = 0; i < lst.Count; i++)
+            {
+                var cfg = lst[i] as SentimentCfg;
+                if (cfg.ID == sentiment)
+                    return cfg.Value;
+            }
+        }
+        return 0;
     }
 }

@@ -1,7 +1,11 @@
 ID,Level,Affinity,Scene,Photo,Option
-liubian,1,0,,,这是选项1;这是选项2
-liubian,1,10,,,这是选项1;这是选项2
-liubian,1,20,,,这是选项1;这是选项2
-paimon,1,0,,,这是选项1;这是选项2
-paimon,1,10,,,这是选项1;这是选项2
-paimon,1,20,,,这是选项1;这是选项2
+liubian,1,0,liubian/1,liubian/0,This is option1;This is option2
+liubian,1,1,liubian/1,liubian/1,This is option1;This is option2
+liubian,1,5,liubian/1,liubian/5,This is option1;This is option2
+liubian,1,10,liubian/2,liubian/10,This is option1;This is option2
+liubian,1,15,liubian/2,liubian/15,This is option1;This is option2
+liubian,1,18,liubian/2,liubian/18,This is option1;This is option2
+liubian,1,20,liubian/2,liubian/20,This is option1;This is option2
+paimon,1,0,paimon/1,paimon/0,This is option1;This is option2
+paimon,1,10,paimon/2,paimon/10,This is option1;This is option2
+paimon,1,20,paimon/2,paimon/20,This is option1;This is option2

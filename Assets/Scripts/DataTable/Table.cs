@@ -9,7 +9,7 @@ public class TableBase
 {
     public bool Load(string[] title,string content)
     {
-        string[] props = content.Split("\t");
+        string[] props = content.Split(",");
         if (title.Length != props.Length)
             return false;
         Type curType = this.GetType();
@@ -60,4 +60,10 @@ public class AffinityCfg:TableBase
     {
         return Option.Split(";");
     }
+}
+
+public class SentimentCfg : TableBase
+{
+    public int ID;
+    public int Value;
 }

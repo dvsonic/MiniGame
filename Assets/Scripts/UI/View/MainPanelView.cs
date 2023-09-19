@@ -17,9 +17,11 @@ using TMPro;
 		public Button ShortCut1;
 		public Button ShortCut2;
 		public Button ShortCut3;
-		public Button BtnMemory;
-		public TextMeshProUGUI TFMemory;
+		public Button BtnPhoto;
+		public TextMeshProUGUI TFPhoto;
 		public TextMeshProUGUI TFAffinity;
+		public Spine4UI Avatar;
+		public Image BG;
 		protected override void OnInit(Transform holder)
 		{
 			var itemRef = holder.GetComponent<UIItemReference>();
@@ -38,8 +40,10 @@ using TMPro;
 			ShortCut1 = itemVarList[9].Target.GetComponent<Button>();
 			ShortCut2 = itemVarList[10].Target.GetComponent<Button>();
 			ShortCut3 = itemVarList[11].Target.GetComponent<Button>();
-			BtnMemory = itemVarList[12].Target.GetComponent<Button>();
-			TFMemory = itemVarList[13].Target.GetComponent<TextMeshProUGUI>();
+			BtnPhoto = itemVarList[12].Target.GetComponent<Button>();
+			TFPhoto = itemVarList[13].Target.GetComponent<TextMeshProUGUI>();
 			TFAffinity = itemVarList[14].Target.GetComponent<TextMeshProUGUI>();
+			Avatar = itemVarList[15].Target.GetComponent<Spine4UI>();
+			BG = itemVarList[16].Target.GetComponent<Image>();
 		}
 	}
