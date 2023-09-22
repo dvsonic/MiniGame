@@ -29,7 +29,7 @@ public class Spine4UI : MonoBehaviour
                 sg = SkeletonGraphic.NewSkeletonGraphicGameObject(skeletonDataAsset, this.transform, skeletonGraphicMaterial);
                 sg.Initialize(false);
                 sg.Skeleton.SetSlotsToSetupPose();
-                //sg.AnimationState.SetAnimation(0, "1happy", true);
+                sg.AnimationState.SetAnimation(0, "0idle", true);
             });
         });
     }
@@ -41,10 +41,10 @@ public class Spine4UI : MonoBehaviour
         switch(sentiValue)
         {
             case 1:
-                sg.AnimationState.SetAnimation(0, "2fear", true);
+                sg.AnimationState.SetAnimation(0, "2fear", false);
                 break;
             case 2:
-                sg.AnimationState.SetAnimation(0, "3angle", true);
+                sg.AnimationState.SetAnimation(0, "3angle", false);
                 break;
             case 3:
                 sg.AnimationState.SetAnimation(0, "4lose", false);
@@ -59,6 +59,7 @@ public class Spine4UI : MonoBehaviour
                 sg.AnimationState.SetAnimation(0, "1happy", false);
                 break;
         }
+        sg.AnimationState.AddAnimation(0, "0idle", true,0);
     }
 
 

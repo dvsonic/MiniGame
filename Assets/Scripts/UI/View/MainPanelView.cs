@@ -22,6 +22,11 @@ using TMPro;
 		public TextMeshProUGUI TFAffinity;
 		public Spine4UI Avatar;
 		public Image BG;
+		public GameObject SceneSelect;
+		public Button BtnExpand;
+		public RectTransform Content;
+		public GameObject SceneItem;
+		public TextMeshProUGUI TFSceneAffinity;
 		protected override void OnInit(Transform holder)
 		{
 			var itemRef = holder.GetComponent<UIItemReference>();
@@ -45,5 +50,10 @@ using TMPro;
 			TFAffinity = itemVarList[14].Target.GetComponent<TextMeshProUGUI>();
 			Avatar = itemVarList[15].Target.GetComponent<Spine4UI>();
 			BG = itemVarList[16].Target.GetComponent<Image>();
+			SceneSelect = itemVarList[17].Target.gameObject;
+			BtnExpand = itemVarList[18].Target.GetComponent<Button>();
+			Content = itemVarList[19].Target.GetComponent<RectTransform>();
+			SceneItem = itemVarList[20].Target.gameObject;
+			TFSceneAffinity = itemVarList[21].Target.GetComponent<TextMeshProUGUI>();
 		}
 	}
