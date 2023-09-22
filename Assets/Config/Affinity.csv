@@ -1,11 +1,31 @@
 ID,Level,Affinity,Scene,Photo,Option
-liubian,1,0,liubian/1,liubian/0,This is option1;This is option2
-liubian,1,1,liubian/1,liubian/1,This is option1;This is option2
-liubian,1,5,liubian/1,liubian/5,This is option1;This is option2
-liubian,1,10,liubian/2,liubian/10,This is option1;This is option2
-liubian,1,15,liubian/2,liubian/15,This is option1;This is option2
-liubian,1,18,liubian/2,liubian/18,This is option1;This is option2
-liubian,1,20,liubian/2,liubian/20,This is option1;This is option2
-paimon,1,0,paimon/1,paimon/0,This is option1;This is option2
-paimon,1,10,paimon/2,paimon/10,This is option1;This is option2
-paimon,1,20,paimon/2,paimon/20,This is option1;This is option2
+paimon,1,0,paimon/1_1,,
+paimon,1,1,paimon/1_1,,
+paimon,1,2,paimon/1_1,,你会跳肚皮舞吗？
+paimon,1,3,paimon/1_1,paimon/1_1,
+paimon,1,4,paimon/1_1,,你能三口一头猪吗？
+paimon,1,5,paimon/1_2,,
+paimon,1,6,paimon/1_2,,你会制造阿姆斯朗螺旋加速喷气式阿姆斯特朗炮吗？
+paimon,1,7,paimon/1_2,,
+paimon,1,8,paimon/1_2,,
+paimon,1,9,paimon/1_2,,
+paimon,1,10,paimon/1_3,,
+paimon,1,11,paimon/1_3,,
+paimon,1,12,paimon/1_3,,
+paimon,1,13,paimon/1_3,,
+paimon,1,14,paimon/1_3,,
+paimon,1,15,paimon/1_4,,
+paimon,1,16,paimon/1_4,,
+paimon,1,17,paimon/1_4,,
+paimon,1,18,paimon/1_4,paimon/1_2,要去下一个地方啦
+paimon,1,19,paimon/1_4,,
+paimon,2,20,paimon/2_1,,
+paimon,2,21,paimon/2_1,,
+paimon,2,22,paimon/2_1,paimon/2_1,你能三口一头猪吗？
+paimon,2,23,paimon/2_1,,
+paimon,2,24,paimon/2_1,,
+paimon,2,25,paimon/2_2,,
+paimon,2,26,paimon/2_2,,
+paimon,2,27,paimon/2_2,,
+paimon,2,28,paimon/2_2,paimon/2_2,哈喽
+paimon,2,29,paimon/2_2,,
