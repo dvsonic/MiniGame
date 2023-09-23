@@ -14,5 +14,7 @@ ID_C2SChatLoginReq = 65543
 ID_S2CChatLoginRes = 65544
 ID_C2SChangeCharacterReq = 65545
 ID_S2CChangeCharacterRes = 65546
+ID_C2SEnterChapterReq = 65547
+ID_S2CEnterChatperRes = 65548
 #end Ai
 

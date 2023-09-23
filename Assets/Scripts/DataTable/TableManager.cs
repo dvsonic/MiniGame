@@ -80,7 +80,7 @@ public class TableManager : Singleton<TableManager>
         return null;
     }
 
-    public AffinityCfg GetAffinity(string id,int curAffinity)
+    public AffinityCfg GetAffinity(string id,int level,int curAffinity)
     {
         List<TableBase> lst = GetTable(TableEnum.Affinity);
         if(lst != null)
@@ -88,11 +88,35 @@ public class TableManager : Singleton<TableManager>
             for(int i=1;i<lst.Count;i++)
             {
                 var cfg = lst[i] as AffinityCfg;
-                if (cfg.ID == id && cfg.Affinity >= curAffinity)
+                if (cfg.ID == id && cfg.Level == level && cfg.Affinity >= curAffinity)
                     return cfg;
             }
         }
         return null;
+    }
+
+    public int GetMaxLevel(string id)
+    {
+        List<TableBase> lst = GetTable(TableEnum.Affinity);
+        if (lst != null)
+            return (lst[lst.Count - 1] as AffinityCfg).Level;
+        else
+            return 0;
+    }
+
+    public int GetMaxAffinity(string id,int level)
+    {
+        List<TableBase> lst = GetTable(TableEnum.Affinity);
+        if (lst != null)
+        {
+            for (int i = lst.Count-1; i>=0; i--)
+            {
+                var cfg = lst[i] as AffinityCfg;
+                if (cfg.ID == id && cfg.Level == level)
+                    return cfg.Affinity;
+            }
+        }
+        return 0;
     }
 
     public int GetAffinityValueBySenti(int sentiment)

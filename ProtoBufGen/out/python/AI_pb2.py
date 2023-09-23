@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='Message',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x08\x61i.proto\x12\x07Message\"\x88\x02\n\x02\x41I\"\x81\x02\n\x05Proto\x12\x0e\n\nProto_NONE\x10\x00\x12\x11\n\rC2SChatAskReq\x10\x01\x12\x14\n\x10S2CChatAnswerRes\x10\x02\x12\x14\n\x10S2CChatAskNotify\x10\x03\x12\x17\n\x13S2CChatAnswerNotify\x10\x04\x12\x17\n\x13\x43\x32SChatHeartBeatReq\x10\x05\x12\x17\n\x13S2CChatHeartBeatRes\x10\x06\x12\x13\n\x0f\x43\x32SChatLoginReq\x10\x07\x12\x13\n\x0fS2CChatLoginRes\x10\x08\x12\x19\n\x15\x43\x32SChangeCharacterReq\x10\t\x12\x19\n\x15S2CChangeCharacterRes\x10\n\"c\n\rC2SChatAskReq\x12\x1f\n\x04type\x18\x01 \x01(\x0e\x32\x11.Message.ChatType\x12\x12\n\x08strValue\x18\x02 \x01(\tH\x00\x12\x12\n\x08sndValue\x18\x03 \x01(\x0cH\x00\x42\t\n\x07\x63ontent\"W\n\x10S2CChatAnswerRes\x12\x0b\n\x03ret\x18\x01 \x01(\x05\x12\x10\n\x08strValue\x18\x02 \x01(\t\x12\x10\n\x08sndValue\x18\x03 \x01(\x0c\x12\x12\n\nsentiValue\x18\x04 \x01(\x05\"f\n\x10S2CChatAskNotify\x12\x1f\n\x04type\x18\x01 \x01(\x0e\x32\x11.Message.ChatType\x12\x12\n\x08strValue\x18\x02 \x01(\tH\x00\x12\x12\n\x08sndValue\x18\x03 \x01(\x0cH\x00\x42\t\n\x07\x63ontent\"M\n\x13S2CChatAnswerNotify\x12\x10\n\x08strValue\x18\x01 \x01(\t\x12\x10\n\x08sndValue\x18\x02 \x01(\x0c\x12\x12\n\nsentiValue\x18\x03 \x01(\x05\"\x15\n\x13\x43\x32SChatHeartBeatReq\"\x15\n\x13S2CChatHeartBeatRes\"9\n\rCharacterInfo\x12\x11\n\tchar_name\x18\x01 \x01(\t\x12\x15\n\rchar_affinity\x18\x02 \x01(\x05\";\n\x0bUserProfile\x12,\n\x0c\x61llCharacter\x18\x01 \x03(\x0b\x32\x16.Message.CharacterInfo\"#\n\x0f\x43\x32SChatLoginReq\x12\x10\n\x08nickName\x18\x01 \x01(\t\"E\n\x0fS2CChatLoginRes\x12\x0b\n\x03ret\x18\x01 \x01(\x05\x12%\n\x07profile\x18\x02 \x01(\x0b\x32\x14.Message.UserProfile\"*\n\x15\x43\x32SChangeCharacterReq\x12\x11\n\tchar_name\x18\x01 \x01(\t\"$\n\x15S2CChangeCharacterRes\x12\x0b\n\x03ret\x18\x01 \x01(\x05*\x1f\n\x08\x43hatType\x12\x08\n\x04TEXT\x10\x00\x12\t\n\x05VOICE\x10\x01\x62\x06proto3')
+  serialized_pb=_b('\n\x08\x61i.proto\x12\x07Message\"\xb8\x02\n\x02\x41I\"\xb1\x02\n\x05Proto\x12\x0e\n\nProto_NONE\x10\x00\x12\x11\n\rC2SChatAskReq\x10\x01\x12\x14\n\x10S2CChatAnswerRes\x10\x02\x12\x14\n\x10S2CChatAskNotify\x10\x03\x12\x17\n\x13S2CChatAnswerNotify\x10\x04\x12\x17\n\x13\x43\x32SChatHeartBeatReq\x10\x05\x12\x17\n\x13S2CChatHeartBeatRes\x10\x06\x12\x13\n\x0f\x43\x32SChatLoginReq\x10\x07\x12\x13\n\x0fS2CChatLoginRes\x10\x08\x12\x19\n\x15\x43\x32SChangeCharacterReq\x10\t\x12\x19\n\x15S2CChangeCharacterRes\x10\n\x12\x16\n\x12\x43\x32SEnterChapterReq\x10\x0b\x12\x16\n\x12S2CEnterChatperRes\x10\x0c\"{\n\rC2SChatAskReq\x12\x1f\n\x04type\x18\x01 \x01(\x0e\x32\x11.Message.ChatType\x12\x12\n\x08strValue\x18\x02 \x01(\tH\x00\x12\x12\n\x08sndValue\x18\x03 \x01(\x0cH\x00\x12\x16\n\x0eupdateAffinity\x18\x04 \x01(\x08\x42\t\n\x07\x63ontent\"~\n\x10S2CChatAnswerRes\x12\x0b\n\x03ret\x18\x01 \x01(\x05\x12\x10\n\x08strValue\x18\x02 \x01(\t\x12\x10\n\x08sndValue\x18\x03 \x01(\x0c\x12\x12\n\nsentiValue\x18\x04 \x01(\x05\x12\x13\n\x0b\x63urAffinity\x18\x05 \x01(\x05\x12\x10\n\x08\x63urLevel\x18\x06 \x01(\x05\"f\n\x10S2CChatAskNotify\x12\x1f\n\x04type\x18\x01 \x01(\x0e\x32\x11.Message.ChatType\x12\x12\n\x08strValue\x18\x02 \x01(\tH\x00\x12\x12\n\x08sndValue\x18\x03 \x01(\x0cH\x00\x42\t\n\x07\x63ontent\"M\n\x13S2CChatAnswerNotify\x12\x10\n\x08strValue\x18\x01 \x01(\t\x12\x10\n\x08sndValue\x18\x02 \x01(\x0c\x12\x12\n\nsentiValue\x18\x03 \x01(\x05\"\x15\n\x13\x43\x32SChatHeartBeatReq\"\x15\n\x13S2CChatHeartBeatRes\"M\n\rCharacterInfo\x12\x11\n\tchar_name\x18\x01 \x01(\t\x12\x15\n\rchar_affinity\x18\x02 \x01(\x05\x12\x12\n\nchar_level\x18\x03 \x01(\x05\";\n\x0bUserProfile\x12,\n\x0c\x61llCharacter\x18\x01 \x03(\x0b\x32\x16.Message.CharacterInfo\"#\n\x0f\x43\x32SChatLoginReq\x12\x10\n\x08nickName\x18\x01 \x01(\t\"E\n\x0fS2CChatLoginRes\x12\x0b\n\x03ret\x18\x01 \x01(\x05\x12%\n\x07profile\x18\x02 \x01(\x0b\x32\x14.Message.UserProfile\"*\n\x15\x43\x32SChangeCharacterReq\x12\x11\n\tchar_name\x18\x01 \x01(\t\"$\n\x15S2CChangeCharacterRes\x12\x0b\n\x03ret\x18\x01 \x01(\x05\"%\n\x12\x43\x32SEnterChapterReq\x12\x0f\n\x07\x63hapter\x18\x01 \x01(\x05\":\n\x12S2CEnterChatperRes\x12\x0f\n\x07\x63hapter\x18\x01 \x01(\x05\x12\x13\n\x0b\x63urAffinity\x18\x02 \x01(\x05*\x1f\n\x08\x43hatType\x12\x08\n\x04TEXT\x10\x00\x12\t\n\x05VOICE\x10\x01\x62\x06proto3')
 )
 
 _CHATTYPE = _descriptor.EnumDescriptor(
@@ -41,8 +41,8 @@ _CHATTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1017,
-  serialized_end=1048,
+  serialized_start=1247,
+  serialized_end=1278,
 )
 _sym_db.RegisterEnumDescriptor(_CHATTYPE)
 
@@ -101,11 +101,19 @@ _AI_PROTO = _descriptor.EnumDescriptor(
       name='S2CChangeCharacterRes', index=10, number=10,
       serialized_options=None,
       type=None),
+    _descriptor.EnumValueDescriptor(
+      name='C2SEnterChapterReq', index=11, number=11,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='S2CEnterChatperRes', index=12, number=12,
+      serialized_options=None,
+      type=None),
   ],
   containing_type=None,
   serialized_options=None,
   serialized_start=29,
-  serialized_end=286,
+  serialized_end=334,
 )
 _sym_db.RegisterEnumDescriptor(_AI_PROTO)
 
@@ -131,7 +139,7 @@ _AI = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=22,
-  serialized_end=286,
+  serialized_end=334,
 )
 
 
@@ -163,6 +171,13 @@ _C2SCHATASKREQ = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='updateAffinity', full_name='Message.C2SChatAskReq.updateAffinity', index=3,
+      number=4, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -178,8 +193,8 @@ _C2SCHATASKREQ = _descriptor.Descriptor(
       name='content', full_name='Message.C2SChatAskReq.content',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=288,
-  serialized_end=387,
+  serialized_start=336,
+  serialized_end=459,
 )
 
 
@@ -218,6 +233,20 @@ _S2CCHATANSWERRES = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='curAffinity', full_name='Message.S2CChatAnswerRes.curAffinity', index=4,
+      number=5, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='curLevel', full_name='Message.S2CChatAnswerRes.curLevel', index=5,
+      number=6, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -230,8 +259,8 @@ _S2CCHATANSWERRES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=389,
-  serialized_end=476,
+  serialized_start=461,
+  serialized_end=587,
 )
 
 
@@ -278,8 +307,8 @@ _S2CCHATASKNOTIFY = _descriptor.Descriptor(
       name='content', full_name='Message.S2CChatAskNotify.content',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=478,
-  serialized_end=580,
+  serialized_start=589,
+  serialized_end=691,
 )
 
 
@@ -323,8 +352,8 @@ _S2CCHATANSWERNOTIFY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=582,
-  serialized_end=659,
+  serialized_start=693,
+  serialized_end=770,
 )
 
 
@@ -397,6 +426,13 @@ _CHARACTERINFO = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='char_level', full_name='Message.CharacterInfo.char_level', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -409,8 +445,8 @@ _CHARACTERINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=707,
-  serialized_end=764,
+  serialized_start=818,
+  serialized_end=895,
 )
 
 
@@ -440,8 +476,8 @@ _USERPROFILE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=766,
-  serialized_end=825,
+  serialized_start=897,
+  serialized_end=956,
 )
 
 
@@ -471,8 +507,8 @@ _C2SCHATLOGINREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=827,
-  serialized_end=862,
+  serialized_start=958,
+  serialized_end=993,
 )
 
 
@@ -509,8 +545,8 @@ _S2CCHATLOGINRES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=864,
-  serialized_end=933,
+  serialized_start=995,
+  serialized_end=1064,
 )
 
 
@@ -540,8 +576,8 @@ _C2SCHANGECHARACTERREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=935,
-  serialized_end=977,
+  serialized_start=1066,
+  serialized_end=1108,
 )
 
 
@@ -571,8 +607,77 @@ _S2CCHANGECHARACTERRES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=979,
-  serialized_end=1015,
+  serialized_start=1110,
+  serialized_end=1146,
+)
+
+
+_C2SENTERCHAPTERREQ = _descriptor.Descriptor(
+  name='C2SEnterChapterReq',
+  full_name='Message.C2SEnterChapterReq',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='chapter', full_name='Message.C2SEnterChapterReq.chapter', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1148,
+  serialized_end=1185,
+)
+
+
+_S2CENTERCHATPERRES = _descriptor.Descriptor(
+  name='S2CEnterChatperRes',
+  full_name='Message.S2CEnterChatperRes',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='chapter', full_name='Message.S2CEnterChatperRes.chapter', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='curAffinity', full_name='Message.S2CEnterChatperRes.curAffinity', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1187,
+  serialized_end=1245,
 )
 
 _AI_PROTO.containing_type = _AI
@@ -605,6 +710,8 @@ DESCRIPTOR.message_types_by_name['C2SChatLoginReq'] = _C2SCHATLOGINREQ
 DESCRIPTOR.message_types_by_name['S2CChatLoginRes'] = _S2CCHATLOGINRES
 DESCRIPTOR.message_types_by_name['C2SChangeCharacterReq'] = _C2SCHANGECHARACTERREQ
 DESCRIPTOR.message_types_by_name['S2CChangeCharacterRes'] = _S2CCHANGECHARACTERRES
+DESCRIPTOR.message_types_by_name['C2SEnterChapterReq'] = _C2SENTERCHAPTERREQ
+DESCRIPTOR.message_types_by_name['S2CEnterChatperRes'] = _S2CENTERCHATPERRES
 DESCRIPTOR.enum_types_by_name['ChatType'] = _CHATTYPE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -698,6 +805,20 @@ S2CChangeCharacterRes = _reflection.GeneratedProtocolMessageType('S2CChangeChara
   # @@protoc_insertion_point(class_scope:Message.S2CChangeCharacterRes)
   })
 _sym_db.RegisterMessage(S2CChangeCharacterRes)
+
+C2SEnterChapterReq = _reflection.GeneratedProtocolMessageType('C2SEnterChapterReq', (_message.Message,), {
+  'DESCRIPTOR' : _C2SENTERCHAPTERREQ,
+  '__module__' : 'ai_pb2'
+  # @@protoc_insertion_point(class_scope:Message.C2SEnterChapterReq)
+  })
+_sym_db.RegisterMessage(C2SEnterChapterReq)
+
+S2CEnterChatperRes = _reflection.GeneratedProtocolMessageType('S2CEnterChatperRes', (_message.Message,), {
+  'DESCRIPTOR' : _S2CENTERCHATPERRES,
+  '__module__' : 'ai_pb2'
+  # @@protoc_insertion_point(class_scope:Message.S2CEnterChatperRes)
+  })
+_sym_db.RegisterMessage(S2CEnterChatperRes)
 
 
 # @@protoc_insertion_point(module_scope)

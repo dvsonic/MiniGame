@@ -24,46 +24,53 @@ namespace Message {
     static AiReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "CghhaS5wcm90bxIHTWVzc2FnZSKIAgoCQUkigQIKBVByb3RvEg4KClByb3Rv",
+            "CghhaS5wcm90bxIHTWVzc2FnZSK4AgoCQUkisQIKBVByb3RvEg4KClByb3Rv",
             "X05PTkUQABIRCg1DMlNDaGF0QXNrUmVxEAESFAoQUzJDQ2hhdEFuc3dlclJl",
             "cxACEhQKEFMyQ0NoYXRBc2tOb3RpZnkQAxIXChNTMkNDaGF0QW5zd2VyTm90",
             "aWZ5EAQSFwoTQzJTQ2hhdEhlYXJ0QmVhdFJlcRAFEhcKE1MyQ0NoYXRIZWFy",
             "dEJlYXRSZXMQBhITCg9DMlNDaGF0TG9naW5SZXEQBxITCg9TMkNDaGF0TG9n",
             "aW5SZXMQCBIZChVDMlNDaGFuZ2VDaGFyYWN0ZXJSZXEQCRIZChVTMkNDaGFu",
-            "Z2VDaGFyYWN0ZXJSZXMQCiJjCg1DMlNDaGF0QXNrUmVxEh8KBHR5cGUYASAB",
-            "KA4yES5NZXNzYWdlLkNoYXRUeXBlEhIKCHN0clZhbHVlGAIgASgJSAASEgoI",
-            "c25kVmFsdWUYAyABKAxIAEIJCgdjb250ZW50IlcKEFMyQ0NoYXRBbnN3ZXJS",
-            "ZXMSCwoDcmV0GAEgASgFEhAKCHN0clZhbHVlGAIgASgJEhAKCHNuZFZhbHVl",
-            "GAMgASgMEhIKCnNlbnRpVmFsdWUYBCABKAUiZgoQUzJDQ2hhdEFza05vdGlm",
-            "eRIfCgR0eXBlGAEgASgOMhEuTWVzc2FnZS5DaGF0VHlwZRISCghzdHJWYWx1",
-            "ZRgCIAEoCUgAEhIKCHNuZFZhbHVlGAMgASgMSABCCQoHY29udGVudCJNChNT",
-            "MkNDaGF0QW5zd2VyTm90aWZ5EhAKCHN0clZhbHVlGAEgASgJEhAKCHNuZFZh",
-            "bHVlGAIgASgMEhIKCnNlbnRpVmFsdWUYAyABKAUiFQoTQzJTQ2hhdEhlYXJ0",
-            "QmVhdFJlcSIVChNTMkNDaGF0SGVhcnRCZWF0UmVzIjkKDUNoYXJhY3Rlcklu",
-            "Zm8SEQoJY2hhcl9uYW1lGAEgASgJEhUKDWNoYXJfYWZmaW5pdHkYAiABKAUi",
-            "OwoLVXNlclByb2ZpbGUSLAoMYWxsQ2hhcmFjdGVyGAEgAygLMhYuTWVzc2Fn",
-            "ZS5DaGFyYWN0ZXJJbmZvIiMKD0MyU0NoYXRMb2dpblJlcRIQCghuaWNrTmFt",
-            "ZRgBIAEoCSJFCg9TMkNDaGF0TG9naW5SZXMSCwoDcmV0GAEgASgFEiUKB3By",
-            "b2ZpbGUYAiABKAsyFC5NZXNzYWdlLlVzZXJQcm9maWxlIioKFUMyU0NoYW5n",
-            "ZUNoYXJhY3RlclJlcRIRCgljaGFyX25hbWUYASABKAkiJAoVUzJDQ2hhbmdl",
-            "Q2hhcmFjdGVyUmVzEgsKA3JldBgBIAEoBSofCghDaGF0VHlwZRIICgRURVhU",
-            "EAASCQoFVk9JQ0UQAWIGcHJvdG8z"));
+            "Z2VDaGFyYWN0ZXJSZXMQChIWChJDMlNFbnRlckNoYXB0ZXJSZXEQCxIWChJT",
+            "MkNFbnRlckNoYXRwZXJSZXMQDCJ7Cg1DMlNDaGF0QXNrUmVxEh8KBHR5cGUY",
+            "ASABKA4yES5NZXNzYWdlLkNoYXRUeXBlEhIKCHN0clZhbHVlGAIgASgJSAAS",
+            "EgoIc25kVmFsdWUYAyABKAxIABIWCg51cGRhdGVBZmZpbml0eRgEIAEoCEIJ",
+            "Cgdjb250ZW50In4KEFMyQ0NoYXRBbnN3ZXJSZXMSCwoDcmV0GAEgASgFEhAK",
+            "CHN0clZhbHVlGAIgASgJEhAKCHNuZFZhbHVlGAMgASgMEhIKCnNlbnRpVmFs",
+            "dWUYBCABKAUSEwoLY3VyQWZmaW5pdHkYBSABKAUSEAoIY3VyTGV2ZWwYBiAB",
+            "KAUiZgoQUzJDQ2hhdEFza05vdGlmeRIfCgR0eXBlGAEgASgOMhEuTWVzc2Fn",
+            "ZS5DaGF0VHlwZRISCghzdHJWYWx1ZRgCIAEoCUgAEhIKCHNuZFZhbHVlGAMg",
+            "ASgMSABCCQoHY29udGVudCJNChNTMkNDaGF0QW5zd2VyTm90aWZ5EhAKCHN0",
+            "clZhbHVlGAEgASgJEhAKCHNuZFZhbHVlGAIgASgMEhIKCnNlbnRpVmFsdWUY",
+            "AyABKAUiFQoTQzJTQ2hhdEhlYXJ0QmVhdFJlcSIVChNTMkNDaGF0SGVhcnRC",
+            "ZWF0UmVzIk0KDUNoYXJhY3RlckluZm8SEQoJY2hhcl9uYW1lGAEgASgJEhUK",
+            "DWNoYXJfYWZmaW5pdHkYAiABKAUSEgoKY2hhcl9sZXZlbBgDIAEoBSI7CgtV",
+            "c2VyUHJvZmlsZRIsCgxhbGxDaGFyYWN0ZXIYASADKAsyFi5NZXNzYWdlLkNo",
+            "YXJhY3RlckluZm8iIwoPQzJTQ2hhdExvZ2luUmVxEhAKCG5pY2tOYW1lGAEg",
+            "ASgJIkUKD1MyQ0NoYXRMb2dpblJlcxILCgNyZXQYASABKAUSJQoHcHJvZmls",
+            "ZRgCIAEoCzIULk1lc3NhZ2UuVXNlclByb2ZpbGUiKgoVQzJTQ2hhbmdlQ2hh",
+            "cmFjdGVyUmVxEhEKCWNoYXJfbmFtZRgBIAEoCSIkChVTMkNDaGFuZ2VDaGFy",
+            "YWN0ZXJSZXMSCwoDcmV0GAEgASgFIiUKEkMyU0VudGVyQ2hhcHRlclJlcRIP",
+            "CgdjaGFwdGVyGAEgASgFIjoKElMyQ0VudGVyQ2hhdHBlclJlcxIPCgdjaGFw",
+            "dGVyGAEgASgFEhMKC2N1ckFmZmluaXR5GAIgASgFKh8KCENoYXRUeXBlEggK",
+            "BFRFWFQQABIJCgVWT0lDRRABYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Message.ChatType), }, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Message.AI), global::Message.AI.Parser, null, null, new[]{ typeof(global::Message.AI.Types.Proto) }, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Message.C2SChatAskReq), global::Message.C2SChatAskReq.Parser, new[]{ "Type", "StrValue", "SndValue" }, new[]{ "Content" }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Message.S2CChatAnswerRes), global::Message.S2CChatAnswerRes.Parser, new[]{ "Ret", "StrValue", "SndValue", "SentiValue" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Message.C2SChatAskReq), global::Message.C2SChatAskReq.Parser, new[]{ "Type", "StrValue", "SndValue", "UpdateAffinity" }, new[]{ "Content" }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Message.S2CChatAnswerRes), global::Message.S2CChatAnswerRes.Parser, new[]{ "Ret", "StrValue", "SndValue", "SentiValue", "CurAffinity", "CurLevel" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Message.S2CChatAskNotify), global::Message.S2CChatAskNotify.Parser, new[]{ "Type", "StrValue", "SndValue" }, new[]{ "Content" }, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Message.S2CChatAnswerNotify), global::Message.S2CChatAnswerNotify.Parser, new[]{ "StrValue", "SndValue", "SentiValue" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Message.C2SChatHeartBeatReq), global::Message.C2SChatHeartBeatReq.Parser, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Message.S2CChatHeartBeatRes), global::Message.S2CChatHeartBeatRes.Parser, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Message.CharacterInfo), global::Message.CharacterInfo.Parser, new[]{ "CharName", "CharAffinity" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Message.CharacterInfo), global::Message.CharacterInfo.Parser, new[]{ "CharName", "CharAffinity", "CharLevel" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Message.UserProfile), global::Message.UserProfile.Parser, new[]{ "AllCharacter" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Message.C2SChatLoginReq), global::Message.C2SChatLoginReq.Parser, new[]{ "NickName" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Message.S2CChatLoginRes), global::Message.S2CChatLoginRes.Parser, new[]{ "Ret", "Profile" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Message.C2SChangeCharacterReq), global::Message.C2SChangeCharacterReq.Parser, new[]{ "CharName" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Message.S2CChangeCharacterRes), global::Message.S2CChangeCharacterRes.Parser, new[]{ "Ret" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Message.S2CChangeCharacterRes), global::Message.S2CChangeCharacterRes.Parser, new[]{ "Ret" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Message.C2SEnterChapterReq), global::Message.C2SEnterChapterReq.Parser, new[]{ "Chapter" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Message.S2CEnterChatperRes), global::Message.S2CEnterChatperRes.Parser, new[]{ "Chapter", "CurAffinity" }, null, null, null)
           }));
     }
     #endregion
@@ -193,6 +200,8 @@ namespace Message {
         [pbr::OriginalName("S2CChatLoginRes")] S2CchatLoginRes = 8,
         [pbr::OriginalName("C2SChangeCharacterReq")] C2SchangeCharacterReq = 9,
         [pbr::OriginalName("S2CChangeCharacterRes")] S2CchangeCharacterRes = 10,
+        [pbr::OriginalName("C2SEnterChapterReq")] C2SenterChapterReq = 11,
+        [pbr::OriginalName("S2CEnterChatperRes")] S2CenterChatperRes = 12,
       }
 
     }
@@ -226,6 +235,7 @@ namespace Message {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public C2SChatAskReq(C2SChatAskReq other) : this() {
       type_ = other.type_;
+      updateAffinity_ = other.updateAffinity_;
       switch (other.ContentCase) {
         case ContentOneofCase.StrValue:
           StrValue = other.StrValue;
@@ -276,6 +286,17 @@ namespace Message {
       }
     }
 
+    /// <summary>Field number for the "updateAffinity" field.</summary>
+    public const int UpdateAffinityFieldNumber = 4;
+    private bool updateAffinity_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool UpdateAffinity {
+      get { return updateAffinity_; }
+      set {
+        updateAffinity_ = value;
+      }
+    }
+
     private object content_;
     /// <summary>Enum of possible cases for the "content" oneof.</summary>
     public enum ContentOneofCase {
@@ -311,6 +332,7 @@ namespace Message {
       if (Type != other.Type) return false;
       if (StrValue != other.StrValue) return false;
       if (SndValue != other.SndValue) return false;
+      if (UpdateAffinity != other.UpdateAffinity) return false;
       if (ContentCase != other.ContentCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -321,6 +343,7 @@ namespace Message {
       if (Type != 0) hash ^= Type.GetHashCode();
       if (contentCase_ == ContentOneofCase.StrValue) hash ^= StrValue.GetHashCode();
       if (contentCase_ == ContentOneofCase.SndValue) hash ^= SndValue.GetHashCode();
+      if (UpdateAffinity != false) hash ^= UpdateAffinity.GetHashCode();
       hash ^= (int) contentCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -347,6 +370,10 @@ namespace Message {
         output.WriteRawTag(26);
         output.WriteBytes(SndValue);
       }
+      if (UpdateAffinity != false) {
+        output.WriteRawTag(32);
+        output.WriteBool(UpdateAffinity);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -364,6 +391,9 @@ namespace Message {
       if (contentCase_ == ContentOneofCase.SndValue) {
         size += 1 + pb::CodedOutputStream.ComputeBytesSize(SndValue);
       }
+      if (UpdateAffinity != false) {
+        size += 1 + 1;
+      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -377,6 +407,9 @@ namespace Message {
       }
       if (other.Type != 0) {
         Type = other.Type;
+      }
+      if (other.UpdateAffinity != false) {
+        UpdateAffinity = other.UpdateAffinity;
       }
       switch (other.ContentCase) {
         case ContentOneofCase.StrValue:
@@ -408,6 +441,10 @@ namespace Message {
           }
           case 26: {
             SndValue = input.ReadBytes();
+            break;
+          }
+          case 32: {
+            UpdateAffinity = input.ReadBool();
             break;
           }
         }
@@ -445,6 +482,8 @@ namespace Message {
       strValue_ = other.strValue_;
       sndValue_ = other.sndValue_;
       sentiValue_ = other.sentiValue_;
+      curAffinity_ = other.curAffinity_;
+      curLevel_ = other.curLevel_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -497,6 +536,28 @@ namespace Message {
       }
     }
 
+    /// <summary>Field number for the "curAffinity" field.</summary>
+    public const int CurAffinityFieldNumber = 5;
+    private int curAffinity_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CurAffinity {
+      get { return curAffinity_; }
+      set {
+        curAffinity_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "curLevel" field.</summary>
+    public const int CurLevelFieldNumber = 6;
+    private int curLevel_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CurLevel {
+      get { return curLevel_; }
+      set {
+        curLevel_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as S2CChatAnswerRes);
@@ -514,6 +575,8 @@ namespace Message {
       if (StrValue != other.StrValue) return false;
       if (SndValue != other.SndValue) return false;
       if (SentiValue != other.SentiValue) return false;
+      if (CurAffinity != other.CurAffinity) return false;
+      if (CurLevel != other.CurLevel) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -524,6 +587,8 @@ namespace Message {
       if (StrValue.Length != 0) hash ^= StrValue.GetHashCode();
       if (SndValue.Length != 0) hash ^= SndValue.GetHashCode();
       if (SentiValue != 0) hash ^= SentiValue.GetHashCode();
+      if (CurAffinity != 0) hash ^= CurAffinity.GetHashCode();
+      if (CurLevel != 0) hash ^= CurLevel.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -553,6 +618,14 @@ namespace Message {
         output.WriteRawTag(32);
         output.WriteInt32(SentiValue);
       }
+      if (CurAffinity != 0) {
+        output.WriteRawTag(40);
+        output.WriteInt32(CurAffinity);
+      }
+      if (CurLevel != 0) {
+        output.WriteRawTag(48);
+        output.WriteInt32(CurLevel);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -572,6 +645,12 @@ namespace Message {
       }
       if (SentiValue != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(SentiValue);
+      }
+      if (CurAffinity != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(CurAffinity);
+      }
+      if (CurLevel != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(CurLevel);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -595,6 +674,12 @@ namespace Message {
       }
       if (other.SentiValue != 0) {
         SentiValue = other.SentiValue;
+      }
+      if (other.CurAffinity != 0) {
+        CurAffinity = other.CurAffinity;
+      }
+      if (other.CurLevel != 0) {
+        CurLevel = other.CurLevel;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -621,6 +706,14 @@ namespace Message {
           }
           case 32: {
             SentiValue = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            CurAffinity = input.ReadInt32();
+            break;
+          }
+          case 48: {
+            CurLevel = input.ReadInt32();
             break;
           }
         }
@@ -1259,6 +1352,7 @@ namespace Message {
     public CharacterInfo(CharacterInfo other) : this() {
       charName_ = other.charName_;
       charAffinity_ = other.charAffinity_;
+      charLevel_ = other.charLevel_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1289,6 +1383,17 @@ namespace Message {
       }
     }
 
+    /// <summary>Field number for the "char_level" field.</summary>
+    public const int CharLevelFieldNumber = 3;
+    private int charLevel_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CharLevel {
+      get { return charLevel_; }
+      set {
+        charLevel_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as CharacterInfo);
@@ -1304,6 +1409,7 @@ namespace Message {
       }
       if (CharName != other.CharName) return false;
       if (CharAffinity != other.CharAffinity) return false;
+      if (CharLevel != other.CharLevel) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1312,6 +1418,7 @@ namespace Message {
       int hash = 1;
       if (CharName.Length != 0) hash ^= CharName.GetHashCode();
       if (CharAffinity != 0) hash ^= CharAffinity.GetHashCode();
+      if (CharLevel != 0) hash ^= CharLevel.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1333,6 +1440,10 @@ namespace Message {
         output.WriteRawTag(16);
         output.WriteInt32(CharAffinity);
       }
+      if (CharLevel != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(CharLevel);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1346,6 +1457,9 @@ namespace Message {
       }
       if (CharAffinity != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(CharAffinity);
+      }
+      if (CharLevel != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(CharLevel);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1364,6 +1478,9 @@ namespace Message {
       if (other.CharAffinity != 0) {
         CharAffinity = other.CharAffinity;
       }
+      if (other.CharLevel != 0) {
+        CharLevel = other.CharLevel;
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -1381,6 +1498,10 @@ namespace Message {
           }
           case 16: {
             CharAffinity = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            CharLevel = input.ReadInt32();
             break;
           }
         }
@@ -2052,6 +2173,292 @@ namespace Message {
             break;
           case 8: {
             Ret = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class C2SEnterChapterReq : pb::IMessage<C2SEnterChapterReq> {
+    private static readonly pb::MessageParser<C2SEnterChapterReq> _parser = new pb::MessageParser<C2SEnterChapterReq>(() => new C2SEnterChapterReq());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<C2SEnterChapterReq> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Message.AiReflection.Descriptor.MessageTypes[13]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public C2SEnterChapterReq() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public C2SEnterChapterReq(C2SEnterChapterReq other) : this() {
+      chapter_ = other.chapter_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public C2SEnterChapterReq Clone() {
+      return new C2SEnterChapterReq(this);
+    }
+
+    /// <summary>Field number for the "chapter" field.</summary>
+    public const int ChapterFieldNumber = 1;
+    private int chapter_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Chapter {
+      get { return chapter_; }
+      set {
+        chapter_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as C2SEnterChapterReq);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(C2SEnterChapterReq other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Chapter != other.Chapter) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Chapter != 0) hash ^= Chapter.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Chapter != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Chapter);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Chapter != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Chapter);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(C2SEnterChapterReq other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Chapter != 0) {
+        Chapter = other.Chapter;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Chapter = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class S2CEnterChatperRes : pb::IMessage<S2CEnterChatperRes> {
+    private static readonly pb::MessageParser<S2CEnterChatperRes> _parser = new pb::MessageParser<S2CEnterChatperRes>(() => new S2CEnterChatperRes());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<S2CEnterChatperRes> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Message.AiReflection.Descriptor.MessageTypes[14]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public S2CEnterChatperRes() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public S2CEnterChatperRes(S2CEnterChatperRes other) : this() {
+      chapter_ = other.chapter_;
+      curAffinity_ = other.curAffinity_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public S2CEnterChatperRes Clone() {
+      return new S2CEnterChatperRes(this);
+    }
+
+    /// <summary>Field number for the "chapter" field.</summary>
+    public const int ChapterFieldNumber = 1;
+    private int chapter_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Chapter {
+      get { return chapter_; }
+      set {
+        chapter_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "curAffinity" field.</summary>
+    public const int CurAffinityFieldNumber = 2;
+    private int curAffinity_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CurAffinity {
+      get { return curAffinity_; }
+      set {
+        curAffinity_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as S2CEnterChatperRes);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(S2CEnterChatperRes other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Chapter != other.Chapter) return false;
+      if (CurAffinity != other.CurAffinity) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Chapter != 0) hash ^= Chapter.GetHashCode();
+      if (CurAffinity != 0) hash ^= CurAffinity.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Chapter != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Chapter);
+      }
+      if (CurAffinity != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(CurAffinity);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Chapter != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Chapter);
+      }
+      if (CurAffinity != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(CurAffinity);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(S2CEnterChatperRes other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Chapter != 0) {
+        Chapter = other.Chapter;
+      }
+      if (other.CurAffinity != 0) {
+        CurAffinity = other.CurAffinity;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Chapter = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            CurAffinity = input.ReadInt32();
             break;
           }
         }

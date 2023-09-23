@@ -18,30 +18,36 @@ public class SceneItem : MonoBehaviour
         MaskObj = transform.Find("Mask").gameObject;
     }
     string scene;
-    int affinity;
-    public void SetValue(string scene, int affinity)
+    int level;
+    public void SetValue(string scene,int level)
     {
         if (img == null)
             Awake();
         this.scene = scene;
-        this.affinity = affinity;
+        this.level = level;
         if(img != null)
             img.sprite = ResourceManager.Instance.Load<Sprite>("Assets/Res/Image/Scene/" + scene + ".png");
         if (tf != null)
-            tf.text = this.affinity.ToString();
+            tf.text = level.ToString();
     }
 
-    int curAffinity;
-    public void SetCurAffinity(int affinity)
+    int curLevel;
+    public void SetCurLevel(int curLevel)
     {
-        curAffinity = affinity;
+        this.curLevel = curLevel;
         if(MaskObj != null)
-            this.MaskObj.SetActive(curAffinity < affinity);
+            this.MaskObj.SetActive(curLevel < level);
+    }
+
+    public bool IsUnLock()
+    {
+        return curLevel >= level;
     }
 
     public void OnClick()
     {
-            EventSys.FireEvent("EVENT_CLICK_SCENE", this.scene);
+        if(IsUnLock())
+            EventSys.FireEvent("EVENT_CLICK_SCENE", this.level);
     }
 }
 

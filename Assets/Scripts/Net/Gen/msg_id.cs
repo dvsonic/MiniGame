@@ -20,6 +20,8 @@ using System.Collections.Generic;
 		S2CChatLoginRes = AI + ((uint)Message.AI.Types.Proto.S2CchatLoginRes),
 		C2SChangeCharacterReq = AI + ((uint)Message.AI.Types.Proto.C2SchangeCharacterReq),
 		S2CChangeCharacterRes = AI + ((uint)Message.AI.Types.Proto.S2CchangeCharacterRes),
+		C2SEnterChapterReq = AI + ((uint)Message.AI.Types.Proto.C2SenterChapterReq),
+		S2CEnterChatperRes = AI + ((uint)Message.AI.Types.Proto.S2CenterChatperRes),
 		#endregion
 
 
@@ -89,7 +91,7 @@ public class MsgFactory
     {
         public static MsgFactory CreateFactory()
         {
-			MsgFactory ret = new MsgFactory(10);
+			MsgFactory ret = new MsgFactory(12);
 
 			ret.Add<Message.C2SChatAskReq>(E_NET_MSG_ID.C2SChatAskReq);
 			ret.Add<Message.S2CChatAnswerRes>(E_NET_MSG_ID.S2CChatAnswerRes);
@@ -101,6 +103,8 @@ public class MsgFactory
 			ret.Add<Message.S2CChatLoginRes>(E_NET_MSG_ID.S2CChatLoginRes);
 			ret.Add<Message.C2SChangeCharacterReq>(E_NET_MSG_ID.C2SChangeCharacterReq);
 			ret.Add<Message.S2CChangeCharacterRes>(E_NET_MSG_ID.S2CChangeCharacterRes);
+			ret.Add<Message.C2SEnterChapterReq>(E_NET_MSG_ID.C2SEnterChapterReq);
+			ret.Add<Message.S2CEnterChatperRes>(E_NET_MSG_ID.S2CEnterChatperRes);
 
             return ret;
         }

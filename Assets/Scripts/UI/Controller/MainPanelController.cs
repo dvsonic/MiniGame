@@ -10,6 +10,7 @@ public class MainPanelController : UIBaseController
 {
 	private MainPanelView m_View;
     private AudioSource m_Audio;
+    bool updateAffinity;
 
 	public static string GetPrefabPath()
 	{
@@ -30,21 +31,33 @@ public class MainPanelController : UIBaseController
         m_View.ShortCut2.onClick.AddListener(OnShortCut2);
         m_View.ShortCut3.onClick.AddListener(OnShortCut3);
 
-        m_View.SceneSelect.SetActive(false);
-        m_View.BtnExpand.onClick.AddListener(OnExpand);
+        m_View.BtnExpand.onClick.AddListener(OnSwitch);
 
         writer = m_View.TFAnswer.gameObject.AddComponent<TypeWriter>();
 
         SocketClient.Instance.RegisterCallback(E_NET_MSG_ID.S2CChatAnswerRes, OnAskRsp);
+        SocketClient.Instance.RegisterCallback(E_NET_MSG_ID.S2CEnterChatperRes, OnEnterRsp);
 
         EventSys.ListenEvent("EVENT_AFFINITY_CHANGE", OnAffinityChange);
         EventSys.ListenEvent("EVENT_AFFINITY_EVENT", OnAffinityEvent);
         EventSys.ListenEvent("EVENT_CLICK_SCENE", OnChangeScene);
     }
 
-    private void OnExpand()
+    private void OnSwitch()
     {
-        m_View.SceneSelect.SetActive(!m_View.SceneSelect.activeSelf);
+        C2SEnterChapterReq req = new C2SEnterChapterReq();
+        req.Chapter = tempSelectLevel;
+        SocketClient.Instance.SendCmd(E_NET_MSG_ID.C2SEnterChapterReq, req);
+    }
+
+    void OnEnterRsp(MsgPacket packet)
+    {
+        var res = packet.PB as S2CEnterChatperRes;
+        if (res != null)
+        {
+            this.SwitchMode(true,res.Chapter);
+            CharacterModel.Instance.UpdateCharacter(curChar, res.Chapter, res.CurAffinity);
+        }
     }
     private void OnPhoto()
     {
@@ -71,11 +84,11 @@ public class MainPanelController : UIBaseController
     {
         var affinity = CharacterModel.Instance.GetAffinity(curChar);
         m_View.TFAffinity.text = affinity.Item1 + "/" + affinity.Item2;
-        var cfg = TableManager.Instance.GetAffinity(curChar, affinity.Item1);
-        if (cfg != null)
-            ResourceManager.Instance.LoadSprite2Image(m_View.BG,"Assets/Res/Image/Scene/" + cfg.Scene + ".png");
         RefreshPhotos(affinity.Item1);
-        RefreshSceneList(affinity.Item1);
+        RefreshSceneList();
+        var cfg = TableManager.Instance.GetAffinity(curChar, CharacterModel.Instance.SelectLevel, CharacterModel.Instance.GetAffinity(curChar).Item1);
+        if (cfg != null)
+            ResourceManager.Instance.LoadSprite2Image(m_View.BG, "Assets/Res/Image/Scene/" + cfg.Scene + ".png");
     }
 
     void RefreshPhotos(int curAffinity)
@@ -86,11 +99,16 @@ public class MainPanelController : UIBaseController
         for (int i = 0; i < lst.Count; i++)
         {
             var cfg = lst[i] as AffinityCfg;
-            if (cfg.ID == curChar)
+            if (cfg.ID == curChar && !string.IsNullOrEmpty(cfg.Photo))
             {
                 totalCnt++;
-                if (curAffinity >= cfg.Affinity)
+                if (CharacterModel.Instance.GetMaxLevel(curChar)>cfg.Level)
                     unlockCnt++;
+                else if(CharacterModel.Instance.GetMaxLevel(curChar) == cfg.Level)
+                {
+                    if (cfg.Affinity <= CharacterModel.Instance.GetAffinity(curChar).Item1)
+                        unlockCnt++;
+                }
             }
         }
         m_View.TFPhoto.text = unlockCnt + "/" + totalCnt;
@@ -100,38 +118,39 @@ public class MainPanelController : UIBaseController
     {
         while (m_View.Content.childCount > 0)
             GameObject.Destroy(m_View.Content.GetChild(0));
-        List<string> sceneList = new List<string>();
+        List<int> sceneList = new List<int>();
         List<TableBase> lst = TableManager.Instance.GetTable(TableManager.TableEnum.Affinity);
         for (int i = 0; i < lst.Count; i++)
         {
             var cfg = lst[i] as AffinityCfg;
             if (cfg.ID == curChar)
             {
-                if (sceneList.IndexOf(cfg.Scene) < 0)
+                if (sceneList.IndexOf(cfg.Level) < 0)
                 {
-                    sceneList.Add(cfg.Scene);
+                    sceneList.Add(cfg.Level);
                     var obj = GameObject.Instantiate<GameObject>(m_View.SceneItem);
                     obj.transform.SetParent(m_View.Content);
+                    obj.transform.localScale = Vector3.one;
                     var item = obj.AddComponent<SceneItem>();
-                    item.SetValue(cfg.Scene, cfg.Affinity);
+                    item.SetValue(cfg.Scene,cfg.Level);
                 }
             }
         }
     }
 
-    void RefreshSceneList(int affinity)
+    void RefreshSceneList()
     {
         for(int i=0;i<m_View.Content.childCount;i++)
         {
             var item = m_View.Content.GetChild(i).GetComponent<SceneItem>();
-            item.SetCurAffinity(affinity);
+            item.SetCurLevel(CharacterModel.Instance.GetMaxLevel(curChar));
         }
     }
 
+    int tempSelectLevel;
     void OnChangeScene(object[] args)
     {
-        string scene = args[0] as string;
-        ResourceManager.Instance.LoadSprite2Image(m_View.BG, "Assets/Res/Image/Scene/" + scene + ".png");
+        tempSelectLevel = (int)args[0];
     }
 
     private void OnAffinityEvent(object[] args)
@@ -169,6 +188,7 @@ public class MainPanelController : UIBaseController
         C2SChatAskReq req = new C2SChatAskReq();
         req.Type = ChatType.Text;
         req.StrValue = content;
+        req.UpdateAffinity = this.updateAffinity;
         SocketClient.Instance.SendCmd(E_NET_MSG_ID.C2SChatAskReq, req);
         this.answered = false;
         m_View.TFAsk.text = req.StrValue;
@@ -194,8 +214,10 @@ public class MainPanelController : UIBaseController
                     writer.SetText(res.StrValue);
                 else
                     m_View.TFAnswer.text = res.StrValue;
-                CharacterModel.Instance.UpdateAffinityBySenti(curChar, res.SentiValue);
-                m_View.Avatar.PlayBySenti(res.SentiValue);
+                if(updateAffinity)
+                    CharacterModel.Instance.UpdateCharacter(curChar,res.CurLevel,res.CurAffinity);
+                else
+                    m_View.Avatar.PlayBySenti(res.SentiValue);
                 this.answered = true;
             }
             if(res.SndValue != null && res.SndValue.Length>0)
@@ -207,8 +229,15 @@ public class MainPanelController : UIBaseController
 
     private void OnBack()
     {
-		UIManager.Instance.ClosePanel(this);
-		UIManager.Instance.OpenPanel<CharacterSelectController>();
+        if (updateAffinity)
+        {
+            SwitchMode(false, CharacterModel.Instance.GetMaxLevel(curChar));
+        }
+        else
+        {
+            UIManager.Instance.ClosePanel(this);
+            UIManager.Instance.OpenPanel<CharacterSelectController>();
+        }
     }
 
     string curChar;
@@ -224,6 +253,46 @@ public class MainPanelController : UIBaseController
 		m_View.AskContent.SetActive(false);
 		m_View.AnswerContent.SetActive(false);
         InitSceneList();
+        SwitchMode(false,CharacterModel.Instance.GetMaxLevel(curChar));
+        InitSelectLevel();
+    }
+
+    void InitSelectLevel()
+    {
+        for (int i = m_View.Content.childCount-1; i >=0; i--)
+        {
+            var item = m_View.Content.GetChild(i).GetComponent<SceneItem>();
+            if(item.IsUnLock())
+            {
+                item.OnClick();
+                return;
+            }
+        }
+    }
+
+    void SwitchMode(bool updateAffinity,int selectLevel)
+    {
+        this.updateAffinity = updateAffinity;
+        CharacterModel.Instance.SelectLevel = selectLevel;
+        m_View.Avatar.gameObject.SetActive(!updateAffinity);
+        m_View.SceneSelect.gameObject.SetActive(!updateAffinity);
+        m_View.BtnExpand.gameObject.SetActive(!updateAffinity);
+        m_View.AskContent.SetActive(false);
+        m_View.AnswerContent.SetActive(false);
+        m_View.ShortCut.SetActive(false);
+        if (updateAffinity)
+        {
+            CharacterModel.Instance.IsInChatper = true;
+            var cfg = TableManager.Instance.GetAffinity(curChar, CharacterModel.Instance.SelectLevel, CharacterModel.Instance.GetAffinity(curChar).Item1);
+            if (cfg != null)
+                ResourceManager.Instance.LoadSprite2Image(m_View.BG, "Assets/Res/Image/Scene/" + cfg.Scene + ".png");
+        }
+        else
+        {
+            CharacterModel.Instance.IsInChatper = false;
+            CharacterModel.Instance.SelectLevel = CharacterModel.Instance.GetMaxLevel(curChar);
+            ResourceManager.Instance.LoadSprite2Image(m_View.BG, "Assets/Res/Image/Background/" + curChar + "_empty.png");
+        }
         OnAffinityChange(null);
     }
 
@@ -252,5 +321,6 @@ public class MainPanelController : UIBaseController
         EventSys.UnListenEvent("EVENT_CLICK_SCENE", OnChangeScene);
         base.OnUIDestory();
         SocketClient.Instance.UnRegisterCallback(E_NET_MSG_ID.S2CChatAnswerRes, OnAskRsp);
+        SocketClient.Instance.UnRegisterCallback(E_NET_MSG_ID.S2CEnterChatperRes, OnEnterRsp);
     }
 }

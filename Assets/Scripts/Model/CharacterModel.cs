@@ -4,51 +4,71 @@ using System.Linq;
 using Message;
 public class CharacterModel:Singleton<CharacterModel>
 {
-    public Dictionary<string, int> CharAffinity = new Dictionary<string, int>();
+    public Dictionary<string, CharacterInfo> allDic = new Dictionary<string, CharacterInfo>();
+    public int SelectLevel;
+    public int curAffinity;
+    public bool IsInChatper;
     
     public void InitAffinity(UserProfile profile)
     {
         for(int i=0;i<profile.AllCharacter.Count;i++)
         {
             var item = profile.AllCharacter[i];
-            CharAffinity[item.CharName] = item.CharAffinity;
+            allDic[item.CharName] = item;
         }
     }
     public Tuple<int,int> GetAffinity(string id)
     {
         int curValue = 0;
         int maxValue = 0;
-        if (CharAffinity.ContainsKey(id))
-            curValue = CharAffinity[id];
-        var cfg = TableManager.Instance.GetCharacterByID(id);
-        if (cfg != null)
-            maxValue = cfg.MaxAffinity;
+        if(IsInChatper)
+        {
+            curValue = curAffinity;
+            maxValue = TableManager.Instance.GetMaxAffinity(id, SelectLevel);
+        }
+        else
+        {
+            if(allDic.ContainsKey(id))
+            {
+                var info = allDic[id];
+                curValue = info.CharAffinity;
+                maxValue = TableManager.Instance.GetMaxAffinity(id, info.CharLevel);
+            }
+        }
+
         return Tuple.Create<int, int>(curValue, maxValue);
     }
 
-    public void UpdateAffinityBySenti(string id,int senti)
+    public int GetMaxLevel(string id)
     {
-        int changeValue = TableManager.Instance.GetAffinityValueBySenti(senti);
-        var affinity = GetAffinity(id);
-        var curValue = Math.Max(0, Math.Min(affinity.Item2, affinity.Item1 + changeValue));
-        CharAffinity[id] = curValue;
-        EventSys.FireEvent("EVENT_AFFINITY_CHANGE");
-
-        var lst = TableManager.Instance.GetTable(TableManager.TableEnum.Affinity);
-        if(lst != null)
+        if (allDic.ContainsKey(id))
         {
-            for(int i=0;i<lst.Count;i++)
+            return allDic[id].CharLevel;
+        }
+        else
+            return 1;
+    }
+
+    public void UpdateCharacter(string id,int curLevel,int curAffinity)
+    {
+        if(allDic.ContainsKey(id))
+        {
+            var info = allDic[id];
+            this.curAffinity = curAffinity;
+            if (info.CharLevel == curLevel)
+                info.CharAffinity = curAffinity;
+            if (info.CharLevel < curLevel)
             {
-                var cfg = lst[i] as AffinityCfg;
-                if (cfg.ID == id && cfg.Affinity == curValue)
-                {
-                    if (!string.IsNullOrEmpty(cfg.Option))
-                    {
-                        EventSys.FireEvent("EVENT_AFFINITY_EVENT", cfg);
-                        break;
-                    }
-                }
+                info.CharLevel = curLevel;
+                UIManager.Instance.ShowFloatingText("解锁章节:" + curLevel);
             }
+            EventSys.FireEvent("EVENT_AFFINITY_CHANGE");
+            var cfg = TableManager.Instance.GetAffinity(id, curLevel, curAffinity);
+            if (!string.IsNullOrEmpty(cfg.Option))
+            {
+                EventSys.FireEvent("EVENT_AFFINITY_EVENT", cfg);
+            }
+
         }
     }
 }

@@ -33,16 +33,23 @@ public class PhotoPanelController : UIBaseController
     {
         base.OnOpen(param);
 		string curChar = param[0] as string;
-		var affinity = CharacterModel.Instance.GetAffinity(curChar);
 		List<TableBase> lst = TableManager.Instance.GetTable(TableManager.TableEnum.Affinity);
 		for(int i=0;i<lst.Count;i++)
         {
 			AffinityCfg cfg = lst[i] as AffinityCfg;
-			if(cfg.ID == curChar)
+			if(cfg.ID == curChar && !string.IsNullOrEmpty(cfg.Photo))
             {
 				GameObject obj = GameObject.Instantiate<GameObject>(m_View.ImgPreview, m_View.Content);
 				var item = obj.AddComponent<PhotoItem>();
-				item.SetValue(cfg.Photo, cfg.Affinity <= affinity.Item1);
+				bool unLock = false;
+				if (cfg.Level < CharacterModel.Instance.GetMaxLevel(curChar))
+					unLock = true;
+				else if(cfg.Level == CharacterModel.Instance.GetMaxLevel(curChar))
+                {
+					if (cfg.Affinity <= CharacterModel.Instance.GetAffinity(curChar).Item1)
+						unLock = true;
+                }
+				item.SetValue(cfg.Photo, unLock);
 			}
         }
 	}

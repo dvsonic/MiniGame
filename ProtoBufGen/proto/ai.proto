@@ -16,6 +16,8 @@ message AI
         S2CChatLoginRes = 8;
         C2SChangeCharacterReq = 9;
         S2CChangeCharacterRes = 10;
+        C2SEnterChapterReq = 11;
+        S2CEnterChatperRes = 12;
     }
 }
 enum ChatType{
@@ -29,6 +31,7 @@ message C2SChatAskReq
         string strValue = 2;
         bytes sndValue = 3;
       }
+    bool updateAffinity = 4;
 }
 
 message S2CChatAnswerRes
@@ -37,6 +40,8 @@ message S2CChatAnswerRes
     string strValue = 2;
     bytes sndValue = 3;
     int32 sentiValue = 4;
+    int32 curAffinity = 5;
+    int32 curLevel = 6;
 }
 
 message S2CChatAskNotify
@@ -69,6 +74,7 @@ message CharacterInfo
 {
     string char_name = 1;
     int32 char_affinity = 2;
+    int32 char_level = 3;
 }
 
 message UserProfile
@@ -92,4 +98,13 @@ message C2SChangeCharacterReq
 message S2CChangeCharacterRes
 {
     int32 ret = 1;
+}
+message C2SEnterChapterReq
+{
+    int32 chapter = 1;
+}
+message S2CEnterChatperRes
+{
+    int32 chapter = 1;
+    int32 curAffinity = 2;
 }
