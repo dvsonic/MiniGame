@@ -15,6 +15,7 @@ public class QuestionItem : MonoBehaviour
     public void SetValue(QuestionCfg cfg)
     {
         this.cfg = cfg;
+        gameObject.transform.localScale = Vector3.one;
         gameObject.GetComponent<RectTransform>().anchoredPosition = cfg.GetAnchoredPos();
     }
 
