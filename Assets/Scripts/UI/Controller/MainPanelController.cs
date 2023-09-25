@@ -137,8 +137,8 @@ public class MainPanelController : UIBaseController
 
     void InitSceneList()
     {
-        while (m_View.Content.childCount > 0)
-            GameObject.Destroy(m_View.Content.GetChild(0));
+        for(int i=m_View.Content.childCount-1;i>=0;i--)
+            GameObject.Destroy(m_View.Content.GetChild(i));
         List<int> sceneList = new List<int>();
         List<TableBase> lst = TableManager.Instance.GetTable(TableManager.TableEnum.Affinity);
         for (int i = 0; i < lst.Count; i++)
@@ -311,8 +311,8 @@ public class MainPanelController : UIBaseController
         else
         {
 
-            while (m_View.QuestionContainer.childCount > 0)
-                GameObject.Destroy(m_View.QuestionContainer.GetChild(0).gameObject);
+            for(int i= m_View.QuestionContainer.childCount-1;i>=0;i--)
+                GameObject.Destroy(m_View.QuestionContainer.GetChild(i).gameObject);
             CharacterModel.Instance.IsInChatper = false;
             CharacterModel.Instance.SelectLevel = CharacterModel.Instance.GetMaxLevel(curChar);
             ResourceManager.Instance.LoadSprite2Image(m_View.BG, "Assets/Res/Image/Background/" + curChar + "_empty.png");
@@ -337,9 +337,9 @@ public class MainPanelController : UIBaseController
 
     void GenerateQuestion(string[] ary)
     {
-        while (m_View.QuestionContainer.childCount > 0)
-            GameObject.Destroy(m_View.QuestionContainer.GetChild(0).gameObject);
-        for(int i=0;i<ary.Length;i++)
+        for (int i = m_View.QuestionContainer.childCount - 1; i >= 0; i--)
+            GameObject.Destroy(m_View.QuestionContainer.GetChild(i).gameObject);
+        for (int i=0;i<ary.Length;i++)
         {
 
             var cfg = TableManager.Instance.GetQuestionByID(int.Parse(ary[i]));
