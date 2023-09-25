@@ -11,6 +11,7 @@ public class TableManager : Singleton<TableManager>
         Affinity,
         Sentiment,
         Story,
+        Question,
     }
     private Dictionary<TableEnum, List<TableBase>> allDic = new Dictionary<TableEnum, List<TableBase>>();
     public void Init()
@@ -45,6 +46,14 @@ public class TableManager : Singleton<TableManager>
             if (asset != null && !string.IsNullOrEmpty(asset.text))
             {
                 OnTableLoaded(TableEnum.Story, typeof(StoryCfg), asset.text);
+            }
+        });
+        ResourceManager.Instance.LoadAsync<TextAsset>("Assets/Config/Question.csv", (obj) =>
+        {
+            TextAsset asset = obj as TextAsset;
+            if (asset != null && !string.IsNullOrEmpty(asset.text))
+            {
+                OnTableLoaded(TableEnum.Question, typeof(QuestionCfg), asset.text);
             }
         });
     }
@@ -153,6 +162,21 @@ public class TableManager : Singleton<TableManager>
                 var cfg = lst[i] as StoryCfg;
                 if (cfg.ID == id)
                     return cfg.GetStoryList();
+            }
+        }
+        return null;
+    }
+
+    public QuestionCfg GetQuestionByID(int id)
+    {
+        List<TableBase> lst = GetTable(TableEnum.Question);
+        if (lst != null)
+        {
+            for (int i = 0; i < lst.Count; i++)
+            {
+                var cfg = lst[i] as QuestionCfg;
+                if (cfg.ID == id)
+                    return cfg;
             }
         }
         return null;

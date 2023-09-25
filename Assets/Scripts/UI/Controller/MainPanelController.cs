@@ -41,6 +41,7 @@ public class MainPanelController : UIBaseController
         EventSys.ListenEvent("EVENT_AFFINITY_CHANGE", OnAffinityChange);
         EventSys.ListenEvent("EVENT_AFFINITY_EVENT", OnAffinityEvent);
         EventSys.ListenEvent("EVENT_CLICK_SCENE", OnChangeScene);
+        EventSys.ListenEvent("EVENT_AUTO_ASK", OnAutoAsk);
     }
 
     private void OnSwitch()
@@ -85,19 +86,29 @@ public class MainPanelController : UIBaseController
         var affinity = CharacterModel.Instance.GetAffinity(curChar);
         m_View.TFAffinity.text = affinity.Item1 + "/" + affinity.Item2;
         RefreshPhotos(affinity.Item1);
-        RefreshSceneList();
-        var cfg = TableManager.Instance.GetAffinity(curChar, CharacterModel.Instance.SelectLevel, CharacterModel.Instance.GetAffinity(curChar).Item1);
-        if (cfg != null)
+        if (!CharacterModel.Instance.IsInChatper)
         {
-            if (!string.IsNullOrEmpty(cfg.Option))
+            RefreshSceneList();
+        }
+        else
+        {
+            var cfg = TableManager.Instance.GetAffinity(curChar, CharacterModel.Instance.SelectLevel, CharacterModel.Instance.GetAffinity(curChar).Item1);
+            if (cfg != null)
             {
-                EventSys.FireEvent("EVENT_AFFINITY_EVENT", cfg);
+                if (!string.IsNullOrEmpty(cfg.Option))
+                {
+                    EventSys.FireEvent("EVENT_AFFINITY_EVENT", cfg);
+                }
+                if (cfg.Story != 0)
+                {
+                    UIManager.Instance.OpenPanel<StoryPanelController>(TableManager.Instance.GetStoryByID(cfg.Story));
+                }
+                if (!string.IsNullOrEmpty(cfg.QuestionList))
+                {
+                    GenerateQuestion(cfg.GetQuestionAry());
+                }
+                ResourceManager.Instance.LoadSprite2Image(m_View.BG, "Assets/Res/Image/Scene/" + cfg.Scene + ".png");
             }
-            if(cfg.Story != 0)
-            {
-                UIManager.Instance.OpenPanel<StoryPanelController>(TableManager.Instance.GetStoryByID(cfg.Story));
-            }
-            ResourceManager.Instance.LoadSprite2Image(m_View.BG, "Assets/Res/Image/Scene/" + cfg.Scene + ".png");
         }
     }
 
@@ -299,6 +310,9 @@ public class MainPanelController : UIBaseController
         }
         else
         {
+
+            while (m_View.QuestionContainer.childCount > 0)
+                GameObject.Destroy(m_View.QuestionContainer.GetChild(0).gameObject);
             CharacterModel.Instance.IsInChatper = false;
             CharacterModel.Instance.SelectLevel = CharacterModel.Instance.GetMaxLevel(curChar);
             ResourceManager.Instance.LoadSprite2Image(m_View.BG, "Assets/Res/Image/Background/" + curChar + "_empty.png");
@@ -321,6 +335,29 @@ public class MainPanelController : UIBaseController
         m_Audio.Play();
     }
 
+    void GenerateQuestion(string[] ary)
+    {
+        while (m_View.QuestionContainer.childCount > 0)
+            GameObject.Destroy(m_View.QuestionContainer.GetChild(0).gameObject);
+        for(int i=0;i<ary.Length;i++)
+        {
+
+            var cfg = TableManager.Instance.GetQuestionByID(int.Parse(ary[i]));
+            if(cfg != null)
+            {
+                var obj = GameObject.Instantiate<GameObject>(m_View.QuestionItem);
+                obj.transform.SetParent(m_View.QuestionContainer);
+                var item = obj.AddComponent<QuestionItem>();
+                item.SetValue(cfg);
+            }
+        }
+    }
+
+    void OnAutoAsk(params object[] param)
+    {
+        this.Ask(param[0] as string);
+    }
+
     protected override void OnUIDestory()
 	{
         m_View.ShortCut1.onClick.RemoveListener(OnShortCut1);
@@ -329,6 +366,7 @@ public class MainPanelController : UIBaseController
         EventSys.UnListenEvent("EVENT_AFFINITY_CHANGE", OnAffinityChange);
         EventSys.UnListenEvent("EVENT_AFFINITY_EVENT", OnAffinityEvent);
         EventSys.UnListenEvent("EVENT_CLICK_SCENE", OnChangeScene);
+        EventSys.UnListenEvent("EVENT_AUTO_ASK", OnAutoAsk);
         base.OnUIDestory();
         SocketClient.Instance.UnRegisterCallback(E_NET_MSG_ID.S2CChatAnswerRes, OnAskRsp);
         SocketClient.Instance.UnRegisterCallback(E_NET_MSG_ID.S2CEnterChatperRes, OnEnterRsp);

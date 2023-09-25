@@ -27,6 +27,8 @@ using TMPro;
 		public RectTransform Content;
 		public GameObject SceneItem;
 		public TextMeshProUGUI TFSceneAffinity;
+		public GameObject QuestionItem;
+		public RectTransform QuestionContainer;
 		protected override void OnInit(Transform holder)
 		{
 			var itemRef = holder.GetComponent<UIItemReference>();
@@ -55,5 +57,7 @@ using TMPro;
 			Content = itemVarList[19].Target.GetComponent<RectTransform>();
 			SceneItem = itemVarList[20].Target.gameObject;
 			TFSceneAffinity = itemVarList[21].Target.GetComponent<TextMeshProUGUI>();
+			QuestionItem = itemVarList[22].Target.gameObject;
+			QuestionContainer = itemVarList[23].Target.GetComponent<RectTransform>();
 		}
 	}

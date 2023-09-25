@@ -62,10 +62,20 @@ public class AffinityCfg:TableBase
     public string Photo;
     public string Option;
     public int Story;
+    public int FixAffinity;
+    public string QuestionList;
 
     public string[] GetOptionAry()
     {
         return Option.Split(";");
+    }
+
+    public string[] GetQuestionAry()
+    {
+        if (string.IsNullOrEmpty(QuestionList))
+            return new string[0];
+        else
+            return QuestionList.Split(";");
     }
 }
 
@@ -73,6 +83,23 @@ public class SentimentCfg : TableBase
 {
     public int ID;
     public int Value;
+}
+
+public class QuestionCfg : TableBase
+{
+    public int ID;
+    public string Content;
+    public string Offset;
+    public UnityEngine.Vector2 GetAnchoredPos()
+    {
+        if (!string.IsNullOrEmpty(Offset))
+        {
+            var ary = Offset.Split(";");
+            if (ary.Length == 2)
+                return new UnityEngine.Vector2(int.Parse(ary[0]), int.Parse(ary[1]));
+        }
+        return UnityEngine.Vector2.zero;
+    }
 }
 
 public class StoryCfg : TableBase

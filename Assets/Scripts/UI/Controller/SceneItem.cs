@@ -46,8 +46,10 @@ public class SceneItem : MonoBehaviour
 
     public void OnClick()
     {
-        if(IsUnLock())
+        if (IsUnLock())
             EventSys.FireEvent("EVENT_CLICK_SCENE", this.level);
+        else
+            UIManager.Instance.ShowFloatingText("当前章节暂未解锁!");
     }
 }
 
