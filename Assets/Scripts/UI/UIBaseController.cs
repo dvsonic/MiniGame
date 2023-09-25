@@ -19,7 +19,11 @@ public class UIBaseController:MonoBehaviour
     protected UIBaseView CreateView(Type type)
     {
         UIBaseView view = Activator.CreateInstance(type) as UIBaseView;
-        view.Init(UIManager.Instance.UIRoot, transform);
+        var root = UIManager.Instance.UIRoot;
+        if (type == typeof(StoryPanelView))
+            view.Init(UIManager.Instance.TopLayer, transform);
+        else
+            view.Init(UIManager.Instance.NormalLayer, transform);
         return view;
     }
 

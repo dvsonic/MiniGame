@@ -10,6 +10,7 @@ public class TableManager : Singleton<TableManager>
         Character,
         Affinity,
         Sentiment,
+        Story,
     }
     private Dictionary<TableEnum, List<TableBase>> allDic = new Dictionary<TableEnum, List<TableBase>>();
     public void Init()
@@ -36,6 +37,14 @@ public class TableManager : Singleton<TableManager>
             if (asset != null && !string.IsNullOrEmpty(asset.text))
             {
                 OnTableLoaded(TableEnum.Sentiment, typeof(SentimentCfg), asset.text);
+            }
+        });
+        ResourceManager.Instance.LoadAsync<TextAsset>("Assets/Config/Story.csv", (obj) =>
+        {
+            TextAsset asset = obj as TextAsset;
+            if (asset != null && !string.IsNullOrEmpty(asset.text))
+            {
+                OnTableLoaded(TableEnum.Story, typeof(StoryCfg), asset.text);
             }
         });
     }
@@ -132,5 +141,20 @@ public class TableManager : Singleton<TableManager>
             }
         }
         return 0;
+    }
+
+    public List<string> GetStoryByID(int id)
+    {
+        List<TableBase> lst = GetTable(TableEnum.Story);
+        if (lst != null)
+        {
+            for (int i = 0; i < lst.Count; i++)
+            {
+                var cfg = lst[i] as StoryCfg;
+                if (cfg.ID == id)
+                    return cfg.GetStoryList();
+            }
+        }
+        return null;
     }
 }

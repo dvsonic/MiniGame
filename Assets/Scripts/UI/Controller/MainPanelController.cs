@@ -88,7 +88,17 @@ public class MainPanelController : UIBaseController
         RefreshSceneList();
         var cfg = TableManager.Instance.GetAffinity(curChar, CharacterModel.Instance.SelectLevel, CharacterModel.Instance.GetAffinity(curChar).Item1);
         if (cfg != null)
+        {
+            if (!string.IsNullOrEmpty(cfg.Option))
+            {
+                EventSys.FireEvent("EVENT_AFFINITY_EVENT", cfg);
+            }
+            if(cfg.Story != 0)
+            {
+                UIManager.Instance.OpenPanel<StoryPanelController>(TableManager.Instance.GetStoryByID(cfg.Story));
+            }
             ResourceManager.Instance.LoadSprite2Image(m_View.BG, "Assets/Res/Image/Scene/" + cfg.Scene + ".png");
+        }
     }
 
     void RefreshPhotos(int curAffinity)

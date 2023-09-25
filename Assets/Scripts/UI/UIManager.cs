@@ -12,12 +12,16 @@ public class UIManager : Singleton<UIManager>
     public static int CANVAS_HEIGHT = 1080;
 
     private Transform uiRoot;
+    public Transform NormalLayer;
+    public Transform TopLayer;
     public Transform UIRoot
     {
         get
         {
             if (uiRoot == null)
                 uiRoot = GameObject.Find("UIRoot").transform;
+            NormalLayer = uiRoot.Find("Normal");
+            TopLayer = uiRoot.Find("Top");
             return uiRoot;
         }
     }
@@ -57,6 +61,7 @@ public class UIManager : Singleton<UIManager>
         {
             obj.transform.SetParent(UIRoot);
             obj.transform.localPosition = Vector3.zero;
+            obj.transform.localScale = Vector3.one;
             obj.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = content;
             obj.GetComponent<RectTransform>().DOAnchorPosY(200, 1).OnComplete(()=>OnFloatingComplete(obj));
         });

@@ -63,12 +63,6 @@ public class CharacterModel:Singleton<CharacterModel>
                 UIManager.Instance.ShowFloatingText("解锁章节:" + curLevel);
             }
             EventSys.FireEvent("EVENT_AFFINITY_CHANGE");
-            var cfg = TableManager.Instance.GetAffinity(id, curLevel, curAffinity);
-            if (!string.IsNullOrEmpty(cfg.Option))
-            {
-                EventSys.FireEvent("EVENT_AFFINITY_EVENT", cfg);
-            }
-
         }
     }
 }

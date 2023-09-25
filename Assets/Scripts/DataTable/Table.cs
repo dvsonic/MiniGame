@@ -20,11 +20,17 @@ public class TableBase
             {
                 if (field.FieldType == typeof(int))
                 {
-                    field.SetValue(this, int.Parse(props[i]));
+                    if (props[i] == "")
+                        field.SetValue(this, 0);
+                    else
+                        field.SetValue(this, int.Parse(props[i]));
                 }
                 else if (field.FieldType == typeof(float))
                 {
-                    field.SetValue(this, float.Parse(props[i]));
+                    if (props[i] == "")
+                        field.SetValue(this, 0);
+                    else
+                        field.SetValue(this, float.Parse(props[i]));
                 }
                 else
                 {
@@ -55,6 +61,7 @@ public class AffinityCfg:TableBase
     public string Scene;
     public string Photo;
     public string Option;
+    public int Story;
 
     public string[] GetOptionAry()
     {
@@ -66,4 +73,17 @@ public class SentimentCfg : TableBase
 {
     public int ID;
     public int Value;
+}
+
+public class StoryCfg : TableBase
+{
+    public int ID;
+    public string Content;
+    public List<string> GetStoryList()
+    {
+        if (string.IsNullOrEmpty(Content))
+            return new List<string>();
+        else
+            return new List<string>(Content.Split(";"));
+    }
 }
