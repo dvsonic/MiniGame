@@ -20,13 +20,18 @@ public class StoryPanelController : UIBaseController
 		m_View.BtnNext.onClick.AddListener(OnNext);
 	}
 
+	int storyId;
+	object extParam;
 	List<string> storyList;
 	int curIdx;
     public override void OnOpen(params object[] param)
     {
-		storyList = param[0] as List<string>;
+		this.storyId = (int)param[0];
+		storyList = TableManager.Instance.GetStoryByID(storyId);
 		if (storyList == null)
 			return;
+		if (param.Length > 1)
+			extParam = param[1];
 		curIdx = 0;
 		m_View.TFContent.text = "";
 		GetComponent<Image>().DOFade(1, 2).From(0).OnComplete(() => OnNext());
@@ -64,5 +69,7 @@ public class StoryPanelController : UIBaseController
 	protected override void OnUIDestory()
 	{
 		base.OnUIDestory();
+		if (this.storyId == 0)
+			UIManager.Instance.OpenPanel<CharacterSelectController>(this.extParam);
 	}
 }

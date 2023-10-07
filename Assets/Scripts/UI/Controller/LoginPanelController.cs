@@ -36,11 +36,14 @@ public class LoginPanelController : UIBaseController
 			int showed = PlayerPrefs.GetInt("ShowStartStory" + m_View.InputName.text, 0);
 			if (showed == 0)
 			{
-				UIManager.Instance.OpenPanel<StoryPanelController>(TableManager.Instance.GetStoryByID(0));
+				UIManager.Instance.OpenPanel<StoryPanelController>(0,res.Profile);
 				PlayerPrefs.SetInt("ShowStartStory" + m_View.InputName.text, 1);
 			}
+			else
+            {
+				UIManager.Instance.OpenPanel<CharacterSelectController>(res.Profile);
+            }
 			UIManager.Instance.ClosePanel(this);
-            UIManager.Instance.OpenPanel<CharacterSelectController>(res.Profile);
         }
     }
 

@@ -101,7 +101,7 @@ public class MainPanelController : UIBaseController
                 }
                 if (cfg.Story != 0)
                 {
-                    UIManager.Instance.OpenPanel<StoryPanelController>(TableManager.Instance.GetStoryByID(cfg.Story));
+                    UIManager.Instance.OpenPanel<StoryPanelController>(cfg.Story);
                 }
                 if (!string.IsNullOrEmpty(cfg.QuestionList))
                 {
@@ -301,6 +301,8 @@ public class MainPanelController : UIBaseController
         m_View.AskContent.SetActive(false);
         m_View.AnswerContent.SetActive(false);
         m_View.ShortCut.SetActive(false);
+        m_View.Input.gameObject.SetActive(!updateAffinity);
+        m_View.BtnSend.gameObject.SetActive(!updateAffinity);
         if (updateAffinity)
         {
             CharacterModel.Instance.IsInChatper = true;

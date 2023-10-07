@@ -103,7 +103,7 @@ public class TableManager : Singleton<TableManager>
         List<TableBase> lst = GetTable(TableEnum.Affinity);
         if(lst != null)
         {
-            for(int i=1;i<lst.Count;i++)
+            for(int i=0;i<lst.Count;i++)
             {
                 var cfg = lst[i] as AffinityCfg;
                 if (cfg.ID == id && cfg.Level == level && cfg.Affinity >= curAffinity)
