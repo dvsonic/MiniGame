@@ -108,6 +108,8 @@ public class MainPanelController : UIBaseController
                     GenerateQuestion(cfg.GetQuestionAry());
                 }
                 ResourceManager.Instance.LoadSprite2Image(m_View.BG, "Assets/Res/Image/Scene/" + cfg.Scene + ".png");
+                m_View.Input.gameObject.SetActive(cfg.FreeTalk == 1);
+                m_View.BtnSend.gameObject.SetActive(cfg.FreeTalk == 1);
             }
         }
     }

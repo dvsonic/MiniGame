@@ -64,6 +64,7 @@ public class AffinityCfg:TableBase
     public int Story;
     public int FixAffinity;
     public string QuestionList;
+    public int FreeTalk;
 
     public string[] GetOptionAry()
     {
