@@ -62,8 +62,16 @@ public class CharacterModel:Singleton<CharacterModel>
                 info.CharLevel = curLevel;
                 UIManager.Instance.ShowFloatingText("解锁章节:" + curLevel);
             }
-            EventSys.FireEvent("EVENT_AFFINITY_CHANGE");
         }
+        else
+        {
+            var info = new CharacterInfo();
+            info.CharName = id;
+            info.CharLevel = curLevel;
+            info.CharAffinity = curAffinity;
+            allDic[id] = info;
+        }
+        EventSys.FireEvent("EVENT_AFFINITY_CHANGE");
     }
 }
 

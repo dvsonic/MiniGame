@@ -38,8 +38,8 @@ public class TypeWriter : MonoBehaviour
                 le = GetComponent<LayoutElement>();
             tf.text = currentText;
             float length = tf.preferredWidth;
-            if (length > 1200)
-                le.preferredWidth = 1200;
+            if (length > 800)
+                le.preferredWidth = 800;
             else
                 le.preferredWidth = length;
             yield return new WaitForSeconds(delay);
